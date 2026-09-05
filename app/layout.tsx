@@ -7,7 +7,7 @@ const description =
   "A local-first workbench for authoring LLM judges, building datasets, and running trustworthy agent evaluations.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://e-valcore.dev"),
+  metadataBase: new URL("https://e-valcore.com"),
   title: "Valcore — Build evaluations you can trust",
   description,
   applicationName: "Valcore",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Valcore — Build evaluations you can trust",
     description,
-    url: "https://e-valcore.dev",
+    url: "https://e-valcore.com",
     siteName: "Valcore",
     type: "website",
     images: [
