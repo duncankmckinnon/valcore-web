@@ -50,25 +50,25 @@ function Datasets() {
 
 function Evaluators() {
   return <>
-    <PageIntro eyebrow="LLM judges" title="Evaluators">Turn evaluation criteria into repeatable judges with explicit inputs, score contracts, and immutable run history.</PageIntro>
-    <section id="creating"><h2>Creating evaluators</h2><h3>Manual creation</h3><p>Name the evaluator, write the judging prompt, choose a Gateway model, and list every required dataset column. Ask the judge to explain its reasoning before returning a score.</p>
+    <PageIntro eyebrow="Agent judges" title="Evaluators">Turn evaluation criteria into repeatable agent judges with explicit inputs, score contracts, harness capabilities, and immutable run history.</PageIntro>
+    <section id="creating"><h2>Creating evaluators</h2><h3>Manual creation</h3><p>Each evaluator runs as an agent judge. Name it, write the judging prompt, choose a Gateway model, and list every required dataset column. Ask the agent judge to explain its reasoning before returning a score.</p>
       <h4>Numeric labels</h4><p>Use a bounded numeric score for graded qualities. Set the minimum and maximum explicitly and explain what the ends—and useful points between them—mean.</p>
       <h4>Categorical labels</h4><p>Use a small fixed label set for clear decisions. Define every label in the prompt; three to five well-separated categories is often easier to validate than a large ambiguous set.</p>
       <h3>Generating evaluators</h3><h4>From prompts and data contracts</h4><p>Provide the task, required columns, column notes, and score schema. Valcore generates an editable evaluator draft that conforms to those inputs.</p>
       <h4>From existing datasets</h4><p>Seed generation from a dataset to inherit its columns and label schema. Review the draft prompt carefully before creating the first version.</p>
     </section>
     <section id="versioning"><h2>Versioning evaluators</h2><p>Versions are active while being edited and become frozen once used by a run. Editing a frozen version creates a copy, preserving the exact judge configuration behind historical results.</p><p>Before a run, Valcore checks that evaluator columns are a subset of dataset columns, label kinds match, and categorical label sets match exactly.</p></section>
-    <section id="capabilities"><h2>Evaluation harness capabilities</h2><p>Capabilities give an evaluator more ways to investigate a case than reading the dataset row alone. They are opt-in per evaluator version and run inside the Pydantic AI harness.</p>
+    <section id="capabilities"><h2>Evaluation harness capabilities</h2><p>Every evaluator runs as an agent judge inside the Pydantic AI harness. Capabilities give that agent more ways to investigate a case than reading the dataset row alone, and are opt-in per evaluator version.</p>
       <h3>Configure capabilities in the UI</h3>
-      <ol className="docs-steps"><li>Open <strong>Evaluators</strong> and select the evaluator you want to edit.</li><li>Open an editable version—or create a new version if the current one is frozen.</li><li>Expand <strong>Capabilities &amp; tools</strong> near the bottom of the version editor.</li><li>Enable only the capabilities the judge needs, configure any revealed settings, and save the version.</li></ol>
+      <ol className="docs-steps"><li>Open <strong>Evaluators</strong> and select the evaluator you want to edit.</li><li>Open an editable version—or create a new version if the current one is frozen.</li><li>Expand <strong>Capabilities &amp; tools</strong> near the bottom of the version editor.</li><li>Enable only the capabilities the agent judge needs, configure any revealed settings, and save the version.</li></ol>
       <div className="capability-cards">
-        <article><h4>CodeMode</h4><p>Lets the judge solve multi-step work in a code-driven execution loop.</p></article>
-        <article><h4>SubAgents</h4><p>Lets the judge delegate bounded parts of a complex evaluation to sub-agents.</p></article>
-        <article><h4>Planning</h4><p>Gives the judge a structured planning workflow for longer evaluation tasks.</p></article>
-        <article><h4>FileSystem</h4><p>Lets the judge read from a rooted directory. After enabling it, set the <strong>root dir</strong> shown in the UI.</p></article>
-        <article><h4>Shell</h4><p>Lets the judge run commands from an explicit allow-list. Configure comma-separated <strong>allowed commands</strong> and a default timeout.</p></article>
+        <article><h4>CodeMode</h4><p>Lets the agent judge solve multi-step work in a code-driven execution loop.</p></article>
+        <article><h4>SubAgents</h4><p>Lets the agent judge delegate bounded parts of a complex evaluation to sub-agents.</p></article>
+        <article><h4>Planning</h4><p>Gives the agent judge a structured planning workflow for longer evaluation tasks.</p></article>
+        <article><h4>FileSystem</h4><p>Lets the agent judge read from a rooted directory. After enabling it, set the <strong>root dir</strong> shown in the UI.</p></article>
+        <article><h4>Shell</h4><p>Lets the agent judge run commands from an explicit allow-list. Configure comma-separated <strong>allowed commands</strong> and a default timeout.</p></article>
       </div>
-      <Note title="Treat capabilities as part of the contract">A capability changes what the judge can see and how it can reach an answer. Grant the narrowest access that answers the evaluation question. The saved capability configuration is versioned with the prompt and model.</Note>
+      <Note title="Treat capabilities as part of the contract">A capability changes what the agent judge can see and how it can reach an answer. Grant the narrowest access that answers the evaluation question. The saved capability configuration is versioned with the prompt and model.</Note>
       <h3>CLI reference</h3><p>Capability authoring happens in the UI. Once saved, the CLI uses the same versioned configuration automatically when you run or export the evaluator.</p><Code>{`# Find the evaluator and its active version\nvalcore list evaluators\n\n# Run it with its saved capabilities\nvalcore run <evaluator> <dataset> --watch\n\n# Export a specific version as runnable Python\nvalcore export <evaluator> --version <version> -o evaluator.py\n\n# Move a complete evaluator package between workspaces\nvalcore export <evaluator> --format json -o evaluator.json\nvalcore import evaluator.json`}</Code><p>Names and unique ID prefixes are accepted anywhere an evaluator, version, or dataset is requested.</p>
     </section>
   </>;
@@ -77,12 +77,12 @@ function Evaluators() {
 function Experiments() {
   return <>
     <PageIntro eyebrow="Measure" title="Experiments">Use validation to measure agreement with human labels, evaluation to score new data, and comparisons to see what changed.</PageIntro>
-    <section id="validation"><h2>Validation runs</h2><p>A validation run compares evaluator scores with a fully labeled dataset. Use it while developing a judge or as a release gate.</p>
-      <h3>Interpreting results</h3><p>Categorical runs report agreement accuracy and a confusion matrix, which reveals which labels the judge mixes up. Numeric runs report error metrics such as MAE and RMSE; lower is better.</p>
+    <section id="validation"><h2>Validation runs</h2><p>A validation run compares evaluator scores with a fully labeled dataset. Use it while developing an agent judge or as a release gate.</p>
+      <h3>Interpreting results</h3><p>Categorical runs report agreement accuracy and a confusion matrix, which reveals which labels the agent judge mixes up. Numeric runs report error metrics such as MAE and RMSE; lower is better.</p>
       <h3>Synced to Logfire</h3><p>Run the experiment command to evaluate through <code>pydantic_evals.Dataset.evaluate</code>. The experiment and its spans appear in the configured Logfire project.</p><Code>{`valcore experiment <evaluator> <dataset>`}</Code>
       <h3>Thresholds API</h3><p>For categorical validation, turn minimum accuracy into a CI gate. Valcore exits with status 2 when the result misses the threshold.</p><Code>{`valcore run <evaluator> <dataset> \\\n  --kind validation \\\n  --min-accuracy 0.90`}</Code><p>Use <code>--json</code> when another tool needs the structured run result. Accuracy thresholds do not apply to numeric labels.</p>
     </section>
-    <section id="evaluation"><h2>Evaluation runs</h2><p>Evaluation runs record judge outputs without comparing them to ground truth, so labels are optional. Use them to score fresh cases, inspect reasoning, and find examples that should join a labeled validation set.</p><h3>Interpreting results</h3><p>Review the output, score, reasoning, usage, and any errors row by row. An evaluation score is a measurement from the configured judge—not a human-verified answer.</p></section>
+    <section id="evaluation"><h2>Evaluation runs</h2><p>Evaluation runs record agent judge outputs without comparing them to ground truth, so labels are optional. Use them to score fresh cases, inspect reasoning, and find examples that should join a labeled validation set.</p><h3>Interpreting results</h3><p>Review the output, score, reasoning, usage, and any errors row by row. An evaluation score is a measurement from the configured agent judge—not a human-verified answer.</p></section>
     <section id="comparisons"><h2>Comparisons</h2><p>Compare runs made against the same dataset to understand the effect of a prompt, model, version, or capability change. Keep the dataset fixed so the difference remains meaningful, then inspect both aggregate metrics and individual disagreements.</p></section>
   </>;
 }

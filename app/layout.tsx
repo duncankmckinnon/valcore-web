@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const description =
-  "A local-first workbench for authoring LLM judges, building datasets, and running trustworthy agent evaluations.";
+  "A local-first workbench for authoring agent judges, building datasets, and running trustworthy agent evaluations.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://e-valcore.com"),

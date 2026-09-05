@@ -11,7 +11,7 @@ export default function Home() {
           <div className="eyebrow"><span /> Local-first agent evaluation</div>
           <h1>Build evaluations<br />you can <em>trust.</em></h1>
           <p className="lede">
-            Valcore is a focused workbench for authoring LLM judges, building datasets,
+            Valcore is a focused workbench for authoring agent judges, building datasets,
             and running agent evaluations—from a visual UI, your terminal, or CI.
           </p>
           <div className="actions">
@@ -52,7 +52,7 @@ export default function Home() {
       <section className="proof shell" aria-label="Valcore workflow">
         <p>One tight loop for better agents.</p>
         <div className="steps">
-          <span><b>01</b> Author the judge</span>
+          <span><b>01</b> Author the agent judge</span>
           <i>→</i>
           <span><b>02</b> Build the dataset</span>
           <i>→</i>
@@ -64,7 +64,7 @@ export default function Home() {
         <header className="section-heading">
           <div className="eyebrow"><span /> The Valcore workflow</div>
           <h2>From a judgment call<br />to a release signal.</h2>
-          <p>Valcore keeps the judge, the evidence, and every result connected in one local-first workflow.</p>
+          <p>Valcore keeps the agent judge, the evidence, and every result connected in one local-first workflow.</p>
         </header>
 
         <div className="workflow-patterns">
@@ -73,7 +73,7 @@ export default function Home() {
             <div className="pattern-copy">
               <span>Define the standard</span>
               <h3>Author an evaluator</h3>
-              <p>Turn the behavior you care about into an LLM judge with explicit inputs, a structured score, and versioned capabilities.</p>
+              <p>Turn the behavior you care about into an agent judge with explicit inputs, a structured score, and versioned harness capabilities.</p>
               <a href="/docs/evaluators">Evaluator guide <span aria-hidden="true">→</span></a>
             </div>
             <div className="pattern-ui evaluator-preview" aria-hidden="true">

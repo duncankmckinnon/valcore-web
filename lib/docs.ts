@@ -32,7 +32,7 @@ export const docs = [
   {
     slug: "evaluators",
     title: "Evaluators",
-    description: "Author reliable LLM judges and evolve them safely.",
+    description: "Author reliable agent judges and evolve them safely.",
     sections: [
       { id: "creating", title: "Creating evaluators", children: ["Manual creation", "Generating evaluators"] },
       { id: "versioning", title: "Versioning evaluators" },
