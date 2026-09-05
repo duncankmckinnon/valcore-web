@@ -14,6 +14,7 @@ export const docs = [
     title: "Getting started",
     description: "Configure credentials and start using Valcore with your local agent.",
     sections: [
+      { id: "launch", title: "Launch Valcore" },
       { id: "keys", title: "Configuring keys", children: ["Valcore project keys", "Agent project keys"] },
       { id: "local-agent", title: "Local agent" },
     ],

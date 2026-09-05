@@ -13,7 +13,8 @@ function Installation() {
 
 function GettingStarted() {
   return <>
-    <PageIntro eyebrow="First run" title="Getting started">Connect Valcore to the Gateway and the right Logfire projects, then give your coding agent the Valcore skill.</PageIntro>
+    <PageIntro eyebrow="First run" title="Getting started">Launch the local workbench, connect Valcore to the Gateway and Logfire, then give your coding agent the Valcore skill.</PageIntro>
+    <section id="launch"><h2>Launch Valcore</h2><p>Start here after installing Valcore:</p><Code>{`valcore serve`}</Code><p>Valcore starts at <code>http://127.0.0.1:8000</code> and opens the visual workbench in your browser. The UI and CLI share the same local SQLite workspace, so anything you create in one is available in the other.</p><p>To use another port or start without opening a browser:</p><Code>{`valcore serve --port 8080\nvalcore serve --no-browser`}</Code><Note title="Your first stop in the UI">Open <strong>Settings</strong> before creating an evaluator. Valcore will show which credentials are configured and which workflows each one unlocks.</Note></section>
     <section id="keys"><h2>Configuring keys</h2><p>Open Settings in the workbench or use the CLI. Valcore stores credentials in <code>~/.valcore/config.toml</code> with restricted file permissions and masks them in the UI.</p>
       <h3>Valcore project keys</h3>
       <div className="key-grid">
@@ -57,7 +58,19 @@ function Evaluators() {
       <h4>From existing datasets</h4><p>Seed generation from a dataset to inherit its columns and label schema. Review the draft prompt carefully before creating the first version.</p>
     </section>
     <section id="versioning"><h2>Versioning evaluators</h2><p>Versions are active while being edited and become frozen once used by a run. Editing a frozen version creates a copy, preserving the exact judge configuration behind historical results.</p><p>Before a run, Valcore checks that evaluator columns are a subset of dataset columns, label kinds match, and categorical label sets match exactly.</p></section>
-    <section id="capabilities"><h2>Evaluation harness capabilities</h2><p>Capabilities are opt-in powers available to the judge at runtime. Add only what the evaluation needs:</p><div className="capability-list"><span>CodeMode</span><span>SubAgents</span><span>Planning</span><span>FileSystem</span><span>Shell</span></div><Note title="Treat capabilities as part of the contract">Capabilities can materially change how a judge reaches its answer. Version them with the prompt and model so results remain attributable and reproducible.</Note></section>
+    <section id="capabilities"><h2>Evaluation harness capabilities</h2><p>Capabilities give an evaluator more ways to investigate a case than reading the dataset row alone. They are opt-in per evaluator version and run inside the Pydantic AI harness.</p>
+      <h3>Configure capabilities in the UI</h3>
+      <ol className="docs-steps"><li>Open <strong>Evaluators</strong> and select the evaluator you want to edit.</li><li>Open an editable version—or create a new version if the current one is frozen.</li><li>Expand <strong>Capabilities &amp; tools</strong> near the bottom of the version editor.</li><li>Enable only the capabilities the judge needs, configure any revealed settings, and save the version.</li></ol>
+      <div className="capability-cards">
+        <article><h4>CodeMode</h4><p>Lets the judge solve multi-step work in a code-driven execution loop.</p></article>
+        <article><h4>SubAgents</h4><p>Lets the judge delegate bounded parts of a complex evaluation to sub-agents.</p></article>
+        <article><h4>Planning</h4><p>Gives the judge a structured planning workflow for longer evaluation tasks.</p></article>
+        <article><h4>FileSystem</h4><p>Lets the judge read from a rooted directory. After enabling it, set the <strong>root dir</strong> shown in the UI.</p></article>
+        <article><h4>Shell</h4><p>Lets the judge run commands from an explicit allow-list. Configure comma-separated <strong>allowed commands</strong> and a default timeout.</p></article>
+      </div>
+      <Note title="Treat capabilities as part of the contract">A capability changes what the judge can see and how it can reach an answer. Grant the narrowest access that answers the evaluation question. The saved capability configuration is versioned with the prompt and model.</Note>
+      <h3>CLI reference</h3><p>Capability authoring happens in the UI. Once saved, the CLI uses the same versioned configuration automatically when you run or export the evaluator.</p><Code>{`# Find the evaluator and its active version\nvalcore list evaluators\n\n# Run it with its saved capabilities\nvalcore run <evaluator> <dataset> --watch\n\n# Export a specific version as runnable Python\nvalcore export <evaluator> --version <version> -o evaluator.py\n\n# Move a complete evaluator package between workspaces\nvalcore export <evaluator> --format json -o evaluator.json\nvalcore import evaluator.json`}</Code><p>Names and unique ID prefixes are accepted anywhere an evaluator, version, or dataset is requested.</p>
+    </section>
   </>;
 }
 
@@ -66,7 +79,7 @@ function Experiments() {
     <PageIntro eyebrow="Measure" title="Experiments">Use validation to measure agreement with human labels, evaluation to score new data, and comparisons to see what changed.</PageIntro>
     <section id="validation"><h2>Validation runs</h2><p>A validation run compares evaluator scores with a fully labeled dataset. Use it while developing a judge or as a release gate.</p>
       <h3>Interpreting results</h3><p>Categorical runs report agreement accuracy and a confusion matrix, which reveals which labels the judge mixes up. Numeric runs report error metrics such as MAE and RMSE; lower is better.</p>
-      <h3>Synced to Logfire</h3><p>Run the experiment command to evaluate through <code>pydantic_evals.Dataset.evaluate</code>. The experiment and its spans appear in the configured Logfire project.</p><Code>{`valcore experiment <evaluator> <dataset> --kind validation`}</Code>
+      <h3>Synced to Logfire</h3><p>Run the experiment command to evaluate through <code>pydantic_evals.Dataset.evaluate</code>. The experiment and its spans appear in the configured Logfire project.</p><Code>{`valcore experiment <evaluator> <dataset>`}</Code>
       <h3>Thresholds API</h3><p>For categorical validation, turn minimum accuracy into a CI gate. Valcore exits with status 2 when the result misses the threshold.</p><Code>{`valcore run <evaluator> <dataset> \\\n  --kind validation \\\n  --min-accuracy 0.90`}</Code><p>Use <code>--json</code> when another tool needs the structured run result. Accuracy thresholds do not apply to numeric labels.</p>
     </section>
     <section id="evaluation"><h2>Evaluation runs</h2><p>Evaluation runs record judge outputs without comparing them to ground truth, so labels are optional. Use them to score fresh cases, inspect reasoning, and find examples that should join a labeled validation set.</p><h3>Interpreting results</h3><p>Review the output, score, reasoning, usage, and any errors row by row. An evaluation score is a measurement from the configured judge—not a human-verified answer.</p></section>

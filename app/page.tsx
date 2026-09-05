@@ -27,8 +27,10 @@ export default function Home() {
         </div>
 
         <div className="hero-visual" aria-label="Valcore evaluation workflow preview">
-          <div className="halo" />
-          <Image className="hero-logo" src="/logo.png" alt="Valcore" width={597} height={640} priority />
+          <div className="logo-stage">
+            <div className="halo" />
+            <Image className="hero-logo" src="/logo.png" alt="Valcore" width={597} height={640} priority />
+          </div>
           <div className="workflow-card">
             <div className="card-head">
               <span className="status-dot" />
@@ -56,6 +58,69 @@ export default function Home() {
           <i>→</i>
           <span><b>03</b> Validate and ship</span>
         </div>
+      </section>
+
+      <section className="workflow-story shell" id="workflow">
+        <header className="section-heading">
+          <div className="eyebrow"><span /> The Valcore workflow</div>
+          <h2>From a judgment call<br />to a release signal.</h2>
+          <p>Valcore keeps the judge, the evidence, and every result connected in one local-first workflow.</p>
+        </header>
+
+        <div className="workflow-patterns">
+          <article className="pattern-card">
+            <div className="pattern-number">01</div>
+            <div className="pattern-copy">
+              <span>Define the standard</span>
+              <h3>Author an evaluator</h3>
+              <p>Turn the behavior you care about into an LLM judge with explicit inputs, a structured score, and versioned capabilities.</p>
+              <a href="/docs/evaluators">Evaluator guide <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="pattern-ui evaluator-preview" aria-hidden="true">
+              <small>evaluator / response quality</small>
+              <div><i /> Instructions</div>
+              <p>Judge whether the response is accurate, relevant, and complete.</p>
+              <div className="preview-chips"><b>reasoning</b><b>score</b><b>confidence</b></div>
+            </div>
+          </article>
+
+          <article className="pattern-card">
+            <div className="pattern-number">02</div>
+            <div className="pattern-copy">
+              <span>Build the evidence</span>
+              <h3>Shape a dataset</h3>
+              <p>Bring in real Logfire traces, upload existing cases, or generate synthetic edge cases—then label the examples that matter.</p>
+              <a href="/docs/datasets">Dataset guide <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="pattern-ui dataset-preview" aria-hidden="true">
+              <div className="table-row table-head"><span>input</span><span>expected</span><span>label</span></div>
+              <div className="table-row"><span>Refund request</span><span>Policy + next step</span><b>pass</b></div>
+              <div className="table-row"><span>Missing context</span><span>Clarifying question</span><b>pass</b></div>
+              <div className="table-row"><span>Unsafe request</span><span>Safe refusal</span><b>review</b></div>
+            </div>
+          </article>
+
+          <article className="pattern-card">
+            <div className="pattern-number">03</div>
+            <div className="pattern-copy">
+              <span>Measure the change</span>
+              <h3>Validate, compare, ship</h3>
+              <p>Measure agreement with human labels, compare evaluator versions on the same data, and enforce release thresholds in CI.</p>
+              <a href="/docs/experiments">Experiment guide <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="pattern-ui result-preview" aria-hidden="true">
+              <small>validation / v4</small>
+              <strong>94.2%</strong>
+              <span>agreement across 128 cases</span>
+              <div className="threshold-line"><i /> threshold 90% <b>passed</b></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="home-cta shell">
+        <div><span>Run locally. Keep control.</span><h2>Start with your first evaluator.</h2></div>
+        <a className="primary-button" href="/docs/getting-started">Open the guide <span aria-hidden="true">→</span></a>
       </section>
     </main>
   );
