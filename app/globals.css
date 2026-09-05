@@ -37,6 +37,7 @@ a { color: inherit; text-decoration: none; }
 .nav-links { display: flex; align-items: center; gap: 28px; color: var(--muted); font-size: 14px; font-weight: 600; }
 .nav-links a { transition: color 160ms ease; }
 .nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--text); }
 .github-link { display: inline-flex; align-items: center; gap: 8px; }
 
 .hero { min-height: 650px; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; padding-block: 76px 96px; }
@@ -81,6 +82,41 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .steps b { margin-right: 7px; color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; }
 .steps i { color: #394762; font-style: normal; }
 
+/* Documentation */
+.docs-page { min-height: 100vh; }
+.docs-page .nav { border-bottom: 1px solid var(--line); }
+.docs-shell { display: grid; grid-template-columns: 230px minmax(0, 760px); gap: 72px; align-items: start; padding-block: 56px 110px; }
+.docs-sidebar { position: sticky; top: 28px; padding: 8px 0; }
+.docs-sidebar-label { margin-bottom: 18px; color: #657494; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.sidebar-group { margin-bottom: 5px; }
+.sidebar-group > a { display: block; padding: 8px 10px; border-radius: 7px; color: #8f9dbc; font-size: 14px; font-weight: 600; transition: color 160ms ease, background 160ms ease; }
+.sidebar-group > a:hover { color: var(--text); background: rgba(112, 141, 205, .07); }
+.sidebar-group > a.current { color: #eaf3ff; background: linear-gradient(90deg, rgba(23, 108, 255, .17), rgba(124, 77, 255, .05)); box-shadow: inset 2px 0 var(--cyan); }
+.sidebar-group ul { margin: 5px 0 12px; padding: 0 0 0 20px; list-style: none; }
+.sidebar-group li a { display: block; padding: 5px 0; color: #697895; font-size: 12px; line-height: 1.35; }
+.sidebar-group li a:hover { color: #b9c8e5; }
+
+.docs-content { min-width: 0; color: #c4cce0; font-size: 16px; line-height: 1.75; }
+.docs-intro { margin-bottom: 58px; padding-bottom: 44px; border-bottom: 1px solid var(--line); }
+.docs-intro > span { display: block; margin-bottom: 14px; color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.docs-intro h1 { margin: 0; color: var(--text); font-size: clamp(2.7rem, 6vw, 4.4rem); line-height: 1; letter-spacing: -.055em; }
+.docs-intro p { max-width: 650px; margin: 22px 0 0; color: #9daac5; font-size: 18px; line-height: 1.65; }
+.docs-content section { scroll-margin-top: 28px; margin: 0 0 62px; }
+.docs-content h2 { margin: 0 0 18px; color: var(--text); font-size: 28px; line-height: 1.25; letter-spacing: -.035em; }
+.docs-content h3 { margin: 36px 0 10px; color: #edf2ff; font-size: 19px; line-height: 1.35; letter-spacing: -.02em; }
+.docs-content h4 { margin: 25px 0 8px; color: #dce5f8; font-size: 15px; line-height: 1.4; }
+.docs-content p { margin: 0 0 17px; }
+.docs-content p code, .docs-note code { padding: 2px 6px; border: 1px solid rgba(77, 140, 255, .2); border-radius: 5px; color: #a9dcff; background: rgba(23, 108, 255, .09); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82em; }
+.code-block { max-width: 100%; margin: 18px 0 22px; padding: 17px 19px; overflow-x: auto; border: 1px solid rgba(107, 139, 204, .2); border-radius: 10px; color: #d4e6ff; background: #080d1d; box-shadow: inset 0 1px rgba(255,255,255,.025); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 1.65; }
+.docs-note { display: grid; grid-template-columns: 125px 1fr; gap: 18px; margin: 25px 0; padding: 18px 20px; border: 1px solid rgba(0, 220, 255, .18); border-radius: 10px; background: rgba(0, 174, 255, .055); }
+.docs-note strong { color: #73e8ff; font-size: 12px; letter-spacing: .03em; }
+.docs-note div { color: #aab8d2; font-size: 14px; line-height: 1.6; }
+.key-grid { display: grid; gap: 13px; margin-block: 18px 30px; }
+.key-grid article { padding: 5px 20px 1px; border-left: 1px solid rgba(63, 133, 255, .4); background: linear-gradient(90deg, rgba(23,108,255,.06), transparent); }
+.key-grid h4 { margin-top: 11px; }
+.capability-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 20px 0 26px; }
+.capability-list span { padding: 7px 11px; border: 1px solid rgba(95, 134, 213, .25); border-radius: 7px; color: #bcd1f1; background: rgba(10, 17, 38, .78); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
 @media (max-width: 900px) {
@@ -90,12 +126,12 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .hero-visual { min-height: 470px; }
   .workflow-card { right: 6%; }
   .proof { flex-direction: column; }
+  .docs-shell { grid-template-columns: 190px minmax(0, 1fr); gap: 38px; }
 }
 @media (max-width: 620px) {
   .shell { width: min(100% - 32px, 1180px); }
   .nav { height: 76px; }
   .nav-links { gap: 18px; }
-  .nav-links > a:first-child { display: none; }
   .hero { gap: 26px; padding-block: 44px 70px; }
   h1 { font-size: clamp(3.1rem, 16vw, 4.25rem); }
   .lede { font-size: 16px; line-height: 1.65; }
@@ -107,4 +143,16 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .workflow-card { right: 0; bottom: 0; width: min(330px, 94%); }
   .steps { width: 100%; flex-direction: column; align-items: flex-start; }
   .steps i { display: none; }
+  .docs-shell { display: block; padding-block: 26px 70px; }
+  .docs-sidebar { position: static; margin-bottom: 45px; padding: 13px; border: 1px solid var(--line); border-radius: 11px; background: rgba(9, 15, 32, .68); }
+  .docs-sidebar-label { margin: 2px 8px 9px; }
+  .docs-sidebar nav { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; }
+  .sidebar-group { flex: none; margin: 0; }
+  .sidebar-group > a { padding: 7px 9px; font-size: 12px; white-space: nowrap; }
+  .sidebar-group ul { display: none; }
+  .docs-intro { margin-bottom: 42px; padding-bottom: 34px; }
+  .docs-intro p { font-size: 16px; }
+  .docs-content section { margin-bottom: 48px; }
+  .docs-content h2 { font-size: 25px; }
+  .docs-note { grid-template-columns: 1fr; gap: 5px; }
 }
