@@ -24,6 +24,7 @@ export const docs = [
     title: "Datasets",
     description: "Create, label, generate, import, and sync evaluation datasets.",
     sections: [
+      { id: "dataset-panel", title: "Dataset panel tour" },
       { id: "adding", title: "Adding datasets", children: ["Blank entries", "CSV or JSON upload", "Logfire traces query", "Logfire dataset syncing", "Synthetic datasets"] },
       { id: "labeling", title: "Labeling datasets", children: ["Numeric labels", "Categorical labels"] },
       { id: "writing", title: "Writing datasets" },
@@ -34,6 +35,7 @@ export const docs = [
     title: "Evaluators",
     description: "Author reliable agent judges and evolve them safely.",
     sections: [
+      { id: "evaluator-panel", title: "Evaluator panel tour" },
       { id: "creating", title: "Creating evaluators", children: ["Manual creation", "Generating evaluators"] },
       { id: "versioning", title: "Versioning evaluators" },
       { id: "capabilities", title: "Evaluation harness capabilities" },
@@ -41,9 +43,11 @@ export const docs = [
   },
   {
     slug: "experiments",
-    title: "Experiments",
+    title: "Runs & experiments",
     description: "Run validations and evaluations, interpret results, and compare versions.",
     sections: [
+      { id: "runs-panel", title: "Runs panel tour" },
+      { id: "starting", title: "Starting a run" },
       { id: "validation", title: "Validation runs", children: ["Interpreting results", "Logfire sync", "Thresholds API"] },
       { id: "evaluation", title: "Evaluation runs" },
       { id: "comparisons", title: "Comparisons" },
