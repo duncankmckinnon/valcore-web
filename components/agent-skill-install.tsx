@@ -28,7 +28,7 @@ export function AgentSkillInstall() {
         {copied ? "Prompt copied" : "Copy for agent"}
       </button>
       <a className="skill-zip-link" href={VALCORE_SKILLS_DOWNLOAD_URL} download>
-        Download ZIP
+        Download Skills
       </a>
     </div>
   );
