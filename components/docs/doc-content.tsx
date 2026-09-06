@@ -5,9 +5,18 @@ import { DatasetPanelVisual, EvaluatorPanelVisual, RunsPanelVisual } from "./pan
 function Installation() {
   return <>
     <PageIntro eyebrow="Set up" title="Installation">Choose the package manager that fits your workflow. Homebrew and uv install Valcore as an isolated command-line tool.</PageIntro>
+    <section id="requirements"><h2>Requirements</h2><p>Valcore supports Python 3.11 or newer. The visual workbench is bundled with the Python package, so a separate Node.js installation is not required to use it.</p><p>Model-backed generation and runs require a Pydantic AI Gateway key. Logfire support is optional and can be added independently.</p></section>
     <section id="homebrew"><h2>Homebrew install</h2><p>Recommended on macOS. The tap provides the <code>valcore</code> command and keeps upgrades simple.</p><Code>{`brew install duncankmckinnon/tap/valcore\nvalcore --help`}</Code></section>
     <section id="uv"><h2>uv tool install</h2><p>Use uv to install Valcore in an isolated environment without adding it to a project&apos;s dependencies.</p><Code>{`uv tool install valcore\nvalcore --help`}</Code><p>To send Valcore&apos;s own traces to Logfire, install the optional integration:</p><Code>{`uv tool install 'valcore[logfire]'`}</Code></section>
     <section id="pip"><h2>pip install</h2><p>Install with pip when you manage Python tools in a dedicated virtual environment.</p><Code>{`python -m venv .venv\nsource .venv/bin/activate\npip install valcore\nvalcore --help`}</Code><Note>Avoid installing command-line tools into your system Python. Homebrew or <code>uv tool</code> usually gives you a cleaner upgrade path.</Note></section>
+    <section id="upgrading"><h2>Upgrading</h2><Code>{`# Homebrew
+brew update && brew upgrade valcore
+
+# uv tool
+uv tool upgrade valcore
+
+# pip, inside the environment where Valcore is installed
+python -m pip install --upgrade valcore`}</Code><p>Upgrading the package does not replace the local workspace under <code>~/.valcore</code>. Valcore applies compatible database migrations when it opens the workspace.</p></section>
     <section><h2>Launch the workbench</h2><Code>{`valcore serve`}</Code><p>This starts Valcore locally and opens the visual workbench. Your workspace is stored locally and shared with the CLI.</p></section>
   </>;
 }
@@ -26,7 +35,33 @@ function GettingStarted() {
       <h3>Agent project keys</h3><p>The read key belongs to the Logfire project where your agent runs. Grant <code>project:read</code> and <code>project:read_datasets</code> so Valcore can query traces and fetch hosted datasets.</p><Code>{`valcore config set-logfire-read-key`}</Code>
       <Note title="Keep the projects distinct">The agent project is the source of production traces and datasets. The Valcore project receives workbench telemetry and published datasets. Using separate scoped keys makes that boundary explicit.</Note>
     </section>
-    <section id="local-agent"><h2>Local agent</h2><h3>Using the CLI agent in Valcore</h3><p>Install Valcore&apos;s bundled skill in the repository where your coding agent works:</p><Code>{`cd your-agent-project\nvalcore skills install`}</Code><p>The default installs to <code>.agents/skills/</code>. Use <code>--claude</code>, <code>--copilot</code>, <code>--all</code>, or <code>--global</code> when you need a different destination.</p><p>The app and CLI use the same local SQLite workspace, so no Valcore server needs to be running for agent-driven CLI work. Resources can be addressed by name or a unique ID prefix.</p><Code>{`valcore datasets list\nvalcore evaluators list\nvalcore runs list`}</Code></section>
+    <section id="local-agent"><h2>Local agent</h2><h3>Using the CLI agent in Valcore</h3><p>Install Valcore&apos;s bundled skill in the repository where your coding agent works:</p><Code>{`cd your-agent-project\nvalcore skills install`}</Code><p>The default installs to <code>.agents/skills/</code>. Use <code>--claude</code>, <code>--copilot</code>, <code>--all</code>, or <code>--global</code> when you need a different destination.</p><p>The app and CLI use the same local SQLite workspace, so no Valcore server needs to be running for agent-driven CLI work. Resources can be addressed by name or a unique ID prefix.</p><Code>{`valcore list evaluators\nvalcore list datasets\nvalcore list runs`}</Code><p>Continue with the <a href="/docs/cli">CLI &amp; automation reference</a> for commands, portable packages, and CI.</p></section>
+  </>;
+}
+
+function Configuration() {
+  return <>
+    <PageIntro eyebrow="Runtime" title="Configuration">Understand which credentials unlock each workflow, how model names are resolved, and where local configuration is stored.</PageIntro>
+    <section id="credentials"><h2>Credentials</h2><p>Open <strong>Settings</strong> in the workbench to set or replace credentials. The same values can be written from the CLI. Only the Gateway key is required for core model-backed work; Logfire credentials are optional and scoped by purpose.</p><div className="key-grid">
+      <article><h4>Gateway API key</h4><p>Runs evaluators and generates evaluator or dataset drafts.</p><Code>{`valcore config set-key`}</Code></article>
+      <article><h4>Logfire tracing token</h4><p>Sends Valcore&apos;s API, run, row, and agent traces to the Valcore project.</p><Code>{`valcore config set-logfire-token`}</Code></article>
+      <article><h4>Logfire read key</h4><p>Queries traces and fetches hosted datasets from the source agent project. It needs <code>project:read</code> and <code>project:read_datasets</code>.</p><Code>{`valcore config set-logfire-read-key`}</Code></article>
+      <article><h4>Logfire write key</h4><p>Publishes curated datasets to the Valcore project. It needs <code>project:read_datasets</code> and <code>project:write_datasets</code>.</p><Code>{`valcore config set-logfire-write-key`}</Code></article>
+    </div><Note title="Manual work remains available">Without a Gateway key you can still author evaluators by hand, upload or edit datasets, label rows, and export resources. Generation and runs are disabled with an explanation.</Note></section>
+
+    <section id="models"><h2>Models and Gateway</h2><p>Valcore routes model traffic through the Pydantic AI Gateway. Model strings use <code>gateway/&lt;provider&gt;:&lt;model&gt;</code>; bare provider model names are rejected before a request is made.</p><Code>{`gateway/anthropic:claude-sonnet-5
+gateway/openai:gpt-5
+gateway/google:gemini-2.5-pro`}</Code><p>Supported Gateway routes are <code>anthropic</code>, <code>openai</code>, <code>google</code>, <code>google-cloud</code>, <code>bedrock</code>, and <code>groq</code>. Suggestions in the editor come from the version of <code>pydantic-ai</code> installed with Valcore, but any well-formed Gateway model string can be entered.</p><Note title="No direct provider keys">Valcore currently has no direct-to-provider client or OpenAI-compatible endpoint setting. The Gateway is the single model access path.</Note></section>
+
+    <section id="precedence"><h2>Defaults and precedence</h2><p>Runtime settings resolve from highest to lowest priority: an explicit command or API argument, a <code>VALCORE_*</code> environment variable, <code>config.toml</code>, then the built-in default.</p><div className="decision-grid"><article><h3>Model</h3><p><code>VALCORE_DEFAULT_MODEL</code>, config key <code>model</code>, then <code>gateway/anthropic:claude-sonnet-5</code>.</p></article><article><h3>Concurrency</h3><p><code>VALCORE_DEFAULT_CONCURRENCY</code>, config key <code>concurrency</code>, then <code>8</code>.</p></article><article><h3>Database</h3><p><code>--db</code>, <code>VALCORE_DB_PATH</code>, config key <code>db_path</code>, then the workspace database.</p></article></div><p>An exported <code>PYDANTIC_AI_GATEWAY_API_KEY</code> or <code>LOGFIRE_TOKEN</code> takes precedence over its stored value. Logfire read and write API keys are read from the config file rather than exported to the environment.</p></section>
+
+    <section id="logfire"><h2>Logfire project boundary</h2><p>Most teams should use two projects. The <strong>source agent project</strong> contains production traces and any hosted datasets you want to sample; the read key points there. The <strong>Valcore project</strong> receives workbench telemetry, Logfire experiments, and published datasets; the tracing token and write key point there.</p><p>If both roles genuinely use one project, <code>valcore config set-logfire-key</code> stores one API key as both read and write. Otherwise, keep the scopes separate.</p><p>Valcore normally resolves Logfire links from the API key. Configure a fallback SQL Workbench URL only when project lookup is unavailable:</p><Code>{`valcore config set-logfire-explore-url \
+  https://logfire-us.pydantic.dev/org/project/explore`}</Code></section>
+
+    <section id="storage"><h2>Storage and security</h2><p>Configuration is stored at <code>~/.valcore/config.toml</code> with mode <code>0600</code>. Settings masks stored credentials, and <code>valcore config get</code> reports Logfire credentials only as present or absent. The Gateway key is also masked unless <code>--show-key</code> is explicitly supplied.</p><Code>{`valcore config get
+valcore config get --json
+valcore config path
+valcore config edit`}</Code><p>Valcore warns if the config file is group- or world-readable. See <a href="/docs/cli#workspace">CLI &amp; automation</a> for relocating the workspace or choosing another database.</p></section>
   </>;
 }
 
@@ -101,12 +136,77 @@ function Experiments() {
   </>;
 }
 
+function Cli() {
+  return <>
+    <PageIntro eyebrow="Reference" title="CLI & automation">Use the terminal over the same local workspace as the app, move evaluator packages between environments, and turn validation into a release signal.</PageIntro>
+    <section id="mental-model"><h2>App and CLI</h2><p>The visual workbench and the <code>valcore</code> command are two interfaces over the same SQLite workspace. The app is usually fastest for authoring and labeling; the CLI is better for repeatable runs, exports, automation, and agent-driven work.</p><p>The CLI opens the database directly. <code>valcore serve</code> does not need to be running for terminal commands to work.</p><Code>{`# Start the visual workbench
+valcore serve
+
+# Address resources by name or a unique ID prefix
+valcore run response-quality support-quality --watch`}</Code><Note title="Names resolve safely">If a name or ID prefix matches more than one resource, Valcore lists the candidates instead of choosing one. Add characters until the value is unique.</Note></section>
+
+    <section id="commands"><h2>Command reference</h2><div className="key-grid">
+      <article><h4><code>valcore serve</code></h4><p>Starts the API and workbench. Use <code>--host</code>, <code>--port</code>, or <code>--no-browser</code> to control how it launches.</p></article>
+      <article><h4><code>valcore list</code></h4><p>Lists <code>evaluators</code>, <code>datasets</code>, or <code>runs</code>. Add <code>--json</code> for structured output.</p></article>
+      <article><h4><code>valcore run</code></h4><p>Runs an evaluator version over a dataset. Important options are <code>--version</code>, <code>--kind</code>, <code>--concurrency</code>, <code>--watch</code>, <code>--json</code>, and <code>--min-accuracy</code>.</p></article>
+      <article><h4><code>valcore experiment</code></h4><p>Runs a validation through <code>pydantic_evals.Dataset.evaluate</code> and records it in Logfire experiments. It supports <code>--version</code>, <code>--concurrency</code>, and <code>--json</code>, but not watch or cancellation.</p></article>
+      <article><h4><code>valcore export</code> / <code>import</code></h4><p>Moves evaluators and datasets as runnable Python or portable JSON eval packages.</p></article>
+      <article><h4><code>valcore logfire</code></h4><p><code>pull</code> queries traces, <code>list</code> shows hosted datasets, <code>fetch</code> imports one, and <code>push</code> publishes a local dataset.</p></article>
+      <article><h4><code>valcore config</code></h4><p>Sets credentials and defaults, prints the config path, or opens the config in your editor. <code>config get</code> masks stored secrets by default.</p></article>
+      <article><h4><code>valcore skills</code></h4><p>Installs, lists, or removes the bundled coding-agent skill. <code>valcore version</code> prints the installed version.</p></article>
+    </div><Code>{`valcore list evaluators
+valcore list datasets --json
+valcore run my-evaluator my-dataset --kind validation --watch
+valcore experiment my-evaluator my-dataset
+valcore logfire fetch qa-set
+valcore version`}</Code></section>
+
+    <section id="packages"><h2>Portable eval packages</h2><p>Evaluator and dataset exports support two formats. Code exports are standalone Python. JSON exports use a <code>pydantic_ai</code> <code>AgentSpec</code> and a <code>pydantic_evals</code> <code>Dataset</code>, with a small Valcore metadata block that preserves the prompt template, required columns, score field, and tool names.</p><Code>{`# Standalone evaluator program
+valcore export my-judge -o my-judge.py
+
+# One portable evaluator + dataset bundle
+valcore export my-judge --dataset my-data --format json -o package.json
+
+# Separate agent and dataset JSON files
+valcore export my-judge --dataset my-data --format json --split -o package.json
+
+# Restore a JSON package to the local workspace
+valcore import package.json`}</Code><Note title="Use the Valcore loader for complete behavior">A bare <code>AgentSpec</code> does not include tools, and a dataset bundled with an evaluator references Valcore&apos;s custom judge type. Keep the generated <code>valcore_judge.py</code> companion when running the package outside Valcore.</Note><h3>Running an exported dataset</h3><Code>{`from pydantic_evals import Dataset
+from valcore_judge import ValcoreJudge
+
+dataset = Dataset.from_file(
+    "my-data.json",
+    custom_evaluator_types=[ValcoreJudge],
+)
+report = dataset.evaluate_sync(task)`}</Code></section>
+
+    <section id="ci"><h2>Using Valcore in CI</h2><p>Use a fully labeled categorical dataset, emit JSON to stdout, and set a minimum accuracy. Progress is written to stderr, so redirecting stdout produces a clean result file.</p><Code>{`valcore run my-evaluator my-dataset \
+  --kind validation \
+  --min-accuracy 0.90 \
+  --json > run.json`}</Code><div className="decision-grid"><article><h3>Exit 0</h3><p>The run completed and met the threshold when one was supplied.</p></article><article><h3>Exit 1</h3><p>The run failed or Valcore reported a domain or configuration error.</p></article><article><h3>Exit 2</h3><p>Categorical accuracy was below <code>--min-accuracy</code>.</p></article></div><Note><code>--min-accuracy</code> requires categorical validation metrics. Numeric or unlabeled runs have no accuracy and fail clearly instead of silently passing.</Note></section>
+
+    <section id="skills"><h2>Agent skills</h2><p>Valcore ships a skill that teaches coding agents its data model, compatibility rules, workflow, and CLI. Install it in the repository the agent works in:</p><Code>{`valcore skills install                    # .agents/skills/
+valcore skills install --claude           # .claude/skills/
+valcore skills install --copilot          # .github/skills/
+valcore skills install --all              # all three
+valcore skills install --claude --global  # home-level install`}</Code><p>Destination flags are additive. Existing identical copies are skipped; use <code>--force</code> to replace an edited copy or <code>--symlink</code> to follow upgrades to the packaged skill. Use <code>valcore skills list</code> to inspect installations and <code>valcore skills uninstall</code> to remove them.</p></section>
+
+    <section id="workspace"><h2>Workspace and databases</h2><p>By default, state lives under <code>~/.valcore</code>: the configuration file, SQLite database, and server logs. The directory is created with mode <code>0700</code> and the config file with mode <code>0600</code>.</p><Code>{`~/.valcore/
+  config.toml
+  valcore.db
+  logs/`}</Code><p>Use <code>VALCORE_HOME</code> to relocate the whole workspace, or pass <code>--db</code> before the command group to select another SQLite database for one invocation:</p><Code>{`VALCORE_HOME=./.valcore valcore list runs
+valcore --db ./scratch.sqlite list datasets`}</Code><p>See <a href="/docs/configuration">Configuration</a> for credential precedence and the boundary between the source Logfire project and Valcore&apos;s own project.</p></section>
+  </>;
+}
+
 const content: Record<DocSlug, () => React.JSX.Element> = {
   installation: Installation,
   "getting-started": GettingStarted,
+  configuration: Configuration,
   datasets: Datasets,
   evaluators: Evaluators,
   experiments: Experiments,
+  cli: Cli,
 };
 
 export function DocContent({ slug }: { slug: DocSlug }) {

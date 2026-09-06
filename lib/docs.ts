@@ -4,9 +4,11 @@ export const docs = [
     title: "Installation",
     description: "Install Valcore with Homebrew, uv, or pip.",
     sections: [
+      { id: "requirements", title: "Requirements" },
       { id: "homebrew", title: "Homebrew install" },
       { id: "uv", title: "uv tool install" },
       { id: "pip", title: "pip install" },
+      { id: "upgrading", title: "Upgrading" },
     ],
   },
   {
@@ -17,6 +19,18 @@ export const docs = [
       { id: "launch", title: "Launch Valcore" },
       { id: "keys", title: "Configuring keys", children: ["Valcore project keys", "Agent project keys"] },
       { id: "local-agent", title: "Local agent" },
+    ],
+  },
+  {
+    slug: "configuration",
+    title: "Configuration",
+    description: "Configure models, credentials, Logfire projects, and local defaults.",
+    sections: [
+      { id: "credentials", title: "Credentials" },
+      { id: "models", title: "Models and Gateway" },
+      { id: "precedence", title: "Defaults and precedence" },
+      { id: "logfire", title: "Logfire project boundary" },
+      { id: "storage", title: "Storage and security" },
     ],
   },
   {
@@ -51,6 +65,19 @@ export const docs = [
       { id: "validation", title: "Validation runs", children: ["Interpreting results", "Logfire sync", "Thresholds API"] },
       { id: "evaluation", title: "Evaluation runs" },
       { id: "comparisons", title: "Comparisons" },
+    ],
+  },
+  {
+    slug: "cli",
+    title: "CLI & automation",
+    description: "Use Valcore from the terminal, CI, and coding agents.",
+    sections: [
+      { id: "mental-model", title: "App and CLI" },
+      { id: "commands", title: "Command reference" },
+      { id: "packages", title: "Portable eval packages" },
+      { id: "ci", title: "Using Valcore in CI" },
+      { id: "skills", title: "Agent skills" },
+      { id: "workspace", title: "Workspace and databases" },
     ],
   },
 ] as const;
