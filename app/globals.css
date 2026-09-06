@@ -61,8 +61,11 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .hero-buttons { display: flex; gap: 10px; }
 .primary-button { height: 52px; flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 0 22px; border-radius: 10px; color: white; background: linear-gradient(105deg, #087cff, #7248f5); font-size: 14px; font-weight: 700; box-shadow: 0 12px 36px rgba(31, 97, 255, 0.28); transition: transform 160ms ease, box-shadow 160ms ease; }
 .primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 42px rgba(67, 83, 255, 0.38); }
-.secondary-button { height: 52px; flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid var(--line); border-radius: 10px; color: #c7d3e8; background: rgba(8, 13, 29, .72); font-size: 13px; font-weight: 700; transition: color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+.secondary-button { height: 52px; flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid var(--line); border-radius: 10px; color: #c7d3e8; background: rgba(8, 13, 29, .72); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: color 160ms ease, border-color 160ms ease, transform 160ms ease; }
 .secondary-button:hover { color: white; border-color: rgba(0, 220, 255, .34); transform: translateY(-2px); }
+.agent-skill-actions { display: flex; align-items: center; gap: 13px; }
+.skill-zip-link { color: #7483a1; font-size: 12px; font-weight: 650; text-decoration: underline; text-decoration-color: rgba(116, 131, 161, .35); text-underline-offset: 4px; transition: color 160ms ease; }
+.skill-zip-link:hover { color: #c7d3e8; }
 .supporting { margin-top: 18px; color: #667491; font-size: 12px; letter-spacing: 0.04em; }
 
 .hero-visual { position: relative; min-height: 590px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
@@ -161,6 +164,7 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-note div { color: #aab8d2; font-size: 14px; line-height: 1.6; }
 .docs-download { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(0, 220, 255, .22); border-radius: 8px; color: #dffaff; background: linear-gradient(100deg, rgba(23, 108, 255, .15), rgba(124, 77, 255, .08)); font-size: 13px; font-weight: 700; text-decoration: none; }
 .docs-download:hover { border-color: rgba(0, 220, 255, .4); }
+.docs-content .agent-skill-actions { margin: 18px 0 22px; }
 .key-grid { display: grid; gap: 13px; margin-block: 18px 30px; }
 .key-grid article { padding: 5px 20px 1px; border-left: 1px solid rgba(63, 133, 255, .4); background: linear-gradient(90deg, rgba(23,108,255,.06), transparent); }
 .key-grid h4 { margin-top: 11px; }
@@ -260,8 +264,9 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   h1 { font-size: clamp(3.1rem, 16vw, 4.25rem); }
   .lede { font-size: 16px; line-height: 1.65; }
   .actions { width: 100%; flex-direction: column; }
-  .install-picker, .install, .hero-buttons, .primary-button, .secondary-button { width: 100%; }
+  .install-picker, .install, .hero-buttons, .primary-button, .secondary-button, .agent-skill-actions { width: 100%; }
   .hero-buttons { flex-direction: column; }
+  .agent-skill-actions { flex-direction: column; }
   .hero-visual { min-height: 500px; }
   .logo-stage { width: 330px; height: 320px; }
   .halo { width: 330px; height: 330px; }
