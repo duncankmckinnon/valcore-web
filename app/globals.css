@@ -47,12 +47,22 @@ a { color: inherit; text-decoration: none; }
 h1 { margin: 0; font-size: clamp(3.4rem, 6.4vw, 6.25rem); line-height: 0.94; letter-spacing: -0.065em; font-weight: 760; }
 h1 em { font-style: normal; color: transparent; background: linear-gradient(100deg, var(--cyan) 0%, #4d8cff 45%, #c84cff 100%); background-clip: text; -webkit-background-clip: text; }
 .lede { max-width: 640px; margin: 30px 0 0; color: var(--muted); font-size: 19px; line-height: 1.7; }
-.actions { display: flex; align-items: stretch; gap: 12px; margin-top: 36px; }
-.install { min-width: 0; display: flex; align-items: center; gap: 10px; padding: 0 18px; height: 52px; border: 1px solid var(--line); border-radius: 10px; background: rgba(8, 13, 29, 0.86); box-shadow: inset 0 1px rgba(255,255,255,0.035); }
+.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 36px; }
+.install-picker { width: min(100%, 520px); min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.install-tabs { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: rgba(8, 13, 29, 0.72); }
+.install-tabs button { min-width: 47px; padding: 4px 10px; border: 0; border-radius: 999px; color: #71809e; background: transparent; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color 160ms ease, background 160ms ease; }
+.install-tabs button:hover { color: #c8d5ec; }
+.install-tabs button.active { color: #c8f8ff; background: rgba(23, 108, 255, .18); box-shadow: inset 0 0 0 1px rgba(0, 220, 255, .12); }
+.install { width: 100%; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 0 10px 0 18px; height: 52px; border: 1px solid var(--line); border-radius: 10px; background: rgba(8, 13, 29, 0.86); box-shadow: inset 0 1px rgba(255,255,255,0.035); }
 .install code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #c9d4ec; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 .prompt { color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.copy-button { width: 34px; height: 34px; flex: none; display: grid; place-items: center; margin-left: auto; border: 0; border-radius: 7px; color: #71809c; background: transparent; cursor: pointer; transition: color 160ms ease, background 160ms ease; }
+.copy-button:hover { color: #e8f1ff; background: rgba(111, 143, 207, .1); }
+.hero-buttons { display: flex; gap: 10px; }
 .primary-button { height: 52px; flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 0 22px; border-radius: 10px; color: white; background: linear-gradient(105deg, #087cff, #7248f5); font-size: 14px; font-weight: 700; box-shadow: 0 12px 36px rgba(31, 97, 255, 0.28); transition: transform 160ms ease, box-shadow 160ms ease; }
 .primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 42px rgba(67, 83, 255, 0.38); }
+.secondary-button { height: 52px; flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid var(--line); border-radius: 10px; color: #c7d3e8; background: rgba(8, 13, 29, .72); font-size: 13px; font-weight: 700; transition: color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+.secondary-button:hover { color: white; border-color: rgba(0, 220, 255, .34); transform: translateY(-2px); }
 .supporting { margin-top: 18px; color: #667491; font-size: 12px; letter-spacing: 0.04em; }
 
 .hero-visual { position: relative; min-height: 590px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
@@ -149,6 +159,8 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-note { display: grid; grid-template-columns: 125px 1fr; gap: 18px; margin: 25px 0; padding: 18px 20px; border: 1px solid rgba(0, 220, 255, .18); border-radius: 10px; background: rgba(0, 174, 255, .055); }
 .docs-note strong { color: #73e8ff; font-size: 12px; letter-spacing: .03em; }
 .docs-note div { color: #aab8d2; font-size: 14px; line-height: 1.6; }
+.docs-download { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(0, 220, 255, .22); border-radius: 8px; color: #dffaff; background: linear-gradient(100deg, rgba(23, 108, 255, .15), rgba(124, 77, 255, .08)); font-size: 13px; font-weight: 700; text-decoration: none; }
+.docs-download:hover { border-color: rgba(0, 220, 255, .4); }
 .key-grid { display: grid; gap: 13px; margin-block: 18px 30px; }
 .key-grid article { padding: 5px 20px 1px; border-left: 1px solid rgba(63, 133, 255, .4); background: linear-gradient(90deg, rgba(23,108,255,.06), transparent); }
 .key-grid h4 { margin-top: 11px; }
@@ -248,7 +260,8 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   h1 { font-size: clamp(3.1rem, 16vw, 4.25rem); }
   .lede { font-size: 16px; line-height: 1.65; }
   .actions { width: 100%; flex-direction: column; }
-  .install, .primary-button { width: 100%; }
+  .install-picker, .install, .hero-buttons, .primary-button, .secondary-button { width: 100%; }
+  .hero-buttons { flex-direction: column; }
   .hero-visual { min-height: 500px; }
   .logo-stage { width: 330px; height: 320px; }
   .halo { width: 330px; height: 330px; }
