@@ -14,7 +14,8 @@ export default function Home() {
           <h1>Build evaluations<br />you can <em>trust.</em></h1>
           <p className="lede">
             Valcore is a focused workbench for authoring agent judges, building datasets,
-            and running agent evaluations—from a visual UI, your terminal, or CI.
+            and running agent evaluations—from a visual UI, your terminal, or CI. Run it on
+            the coding CLI you already have logged in, and you never configure an API key.
           </p>
           <div className="actions">
             <InstallCommand />
@@ -25,7 +26,7 @@ export default function Home() {
               <AgentSkillInstall />
             </div>
           </div>
-          <p className="supporting">Open source · Apache 2.0 · Python 3.11+</p>
+          <p className="supporting">Open source · Apache 2.0 · Python 3.11+ · Runs on Claude Code, Codex, or Cursor</p>
         </div>
 
         <div className="hero-visual" aria-label="Valcore evaluation workflow preview">

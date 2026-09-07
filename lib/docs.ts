@@ -14,20 +14,22 @@ export const docs = [
   {
     slug: "getting-started",
     title: "Getting started",
-    description: "Configure credentials and start using Valcore with your local agent.",
+    description: "Configure credentials, pick a model route, and hand Valcore to your coding agent.",
     sections: [
       { id: "launch", title: "Launch Valcore" },
       { id: "keys", title: "Configuring keys", children: ["Valcore project keys", "Agent project keys"] },
-      { id: "local-agent", title: "Local agent" },
+      { id: "choosing-a-model", title: "Choosing a model", children: ["Gateway models", "Local CLI models"] },
+      { id: "local-agent", title: "Agent skill install" },
     ],
   },
   {
     slug: "configuration",
     title: "Configuration",
-    description: "Configure models, credentials, Logfire projects, and local defaults.",
+    description: "Configure Gateway and local CLI models, credentials, Logfire projects, and defaults.",
     sections: [
       { id: "credentials", title: "Credentials" },
-      { id: "models", title: "Models and Gateway" },
+      { id: "models", title: "Models and routes", children: ["Gateway models", "Local CLI models"] },
+      { id: "local-models", title: "Running on a local CLI" },
       { id: "precedence", title: "Defaults and precedence" },
       { id: "logfire", title: "Logfire project boundary" },
       { id: "storage", title: "Storage and security" },
