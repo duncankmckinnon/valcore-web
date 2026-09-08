@@ -235,7 +235,11 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-content h4 { margin: 25px 0 8px; color: #dce5f8; font-size: 15px; line-height: 1.4; }
 .docs-content p { margin: 0 0 17px; }
 .docs-content p code, .docs-note code { padding: 2px 6px; border: 1px solid rgba(77, 140, 255, .2); border-radius: 5px; color: #a9dcff; background: rgba(23, 108, 255, .09); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82em; }
-.code-block { max-width: 100%; margin: 18px 0 22px; padding: 17px 19px; overflow-x: auto; border: 1px solid rgba(107, 139, 204, .2); border-radius: 10px; color: #d4e6ff; background: #080d1d; box-shadow: inset 0 1px rgba(255,255,255,.025); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 1.65; }
+.code-block-wrap { position: relative; max-width: 100%; margin: 18px 0 22px; }
+.code-block { max-width: 100%; margin: 0; padding: 17px 88px 17px 19px; overflow-x: auto; border: 1px solid rgba(107, 139, 204, .2); border-radius: 10px; color: #d4e6ff; background: #080d1d; box-shadow: inset 0 1px rgba(255,255,255,.025); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 1.65; }
+.code-copy-button { position: absolute; top: 9px; right: 9px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 9px; border: 1px solid rgba(105,138,208,.2); border-radius: 6px; color: #8e9db9; background: rgba(12,19,39,.92); font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; box-shadow: 0 5px 18px rgba(0,0,0,.2); transition: color 160ms ease, border-color 160ms ease, background 160ms ease; }
+.code-copy-button:hover { color: #e4efff; border-color: rgba(0,220,255,.32); background: rgba(18,30,58,.96); }
+.code-copy-button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .docs-note { display: grid; grid-template-columns: 125px 1fr; gap: 18px; margin: 25px 0; padding: 18px 20px; border: 1px solid rgba(0, 220, 255, .18); border-radius: 10px; background: rgba(0, 174, 255, .055); }
 .docs-note strong { color: #73e8ff; font-size: 12px; letter-spacing: .03em; }
 .docs-note div { color: #aab8d2; font-size: 14px; line-height: 1.6; }
@@ -248,9 +252,12 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-optional > div { padding: 20px; border-top: 1px solid rgba(0, 220, 255, .12); }
 .docs-optional > div > :last-child { margin-bottom: 0; }
 .demo-contract { display: grid; gap: 8px; margin: 18px 0 28px; }
-.demo-contract article { display: grid; grid-template-columns: 135px minmax(0, 1fr); gap: 18px; padding: 14px 16px; border: 1px solid rgba(95,134,213,.18); border-radius: 8px; background: rgba(9,15,33,.5); }
+.demo-contract article { display: grid; grid-template-columns: 135px minmax(0, 1fr) auto; gap: 18px; align-items: start; padding: 14px 16px; border: 1px solid rgba(95,134,213,.18); border-radius: 8px; background: rgba(9,15,33,.5); }
 .demo-contract code { color: #8adff4; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 700; }
 .demo-contract p { margin: 0; color: #929fba; font-size: 13px; line-height: 1.55; }
+.field-copy-button { display: inline-flex; align-items: center; gap: 5px; padding: 6px 8px; border: 1px solid rgba(105,138,208,.2); border-radius: 6px; color: #8392ad; background: rgba(6,11,25,.72); font: inherit; font-size: 9px; font-weight: 700; cursor: pointer; transition: color 160ms ease, border-color 160ms ease; }
+.field-copy-button:hover { color: #e4efff; border-color: rgba(0,220,255,.32); }
+.field-copy-button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .demo-values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 18px 0 24px; }
 .demo-values span { display: flex; flex-direction: column; gap: 5px; padding: 14px 16px; border: 1px solid rgba(95,134,213,.18); border-radius: 8px; color: #a8b5cd; background: rgba(9,15,33,.5); font-size: 13px; }
 .demo-values strong { color: #6fe1f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .09em; text-transform: uppercase; }
@@ -409,7 +416,9 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .docs-content section { margin-bottom: 48px; }
   .docs-content h2 { font-size: 25px; }
   .docs-note { grid-template-columns: 1fr; gap: 5px; }
-  .demo-contract article { grid-template-columns: 1fr; gap: 5px; }
+  .demo-contract article { grid-template-columns: 1fr auto; gap: 5px 12px; }
+  .demo-contract article p { grid-column: 1 / -1; grid-row: 2; }
+  .demo-contract article .field-copy-button { grid-column: 2; grid-row: 1; }
   .demo-values { grid-template-columns: 1fr; }
   .capability-cards { grid-template-columns: 1fr; }
   .decision-grid { grid-template-columns: 1fr; }

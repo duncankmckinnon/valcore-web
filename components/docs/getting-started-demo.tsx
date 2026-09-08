@@ -1,6 +1,7 @@
 import { AgentSkillInstall } from "@/components/agent-skill-install";
 import { VALCORE_SKILL_SOURCE_URL } from "@/lib/links";
 import { Code, Note, PageIntro } from "./ui";
+import { CopyText } from "./copy-code";
 
 export function GettingStartedDemo() {
   return <>
@@ -35,14 +36,14 @@ Assign labels using these definitions:
 Make each generated response consistent with its assigned label.`}</Code>
       <h3>Columns</h3><Code>{`session, request, response`}</Code>
       <div className="demo-contract">
-        <article><code>session</code><p>A short conversation identifier. Repeat it when two or more rows are turns from the same customer-support session.</p></article>
-        <article><code>request</code><p>The customer&apos;s latest message about a retail order, including enough context to assess the reply.</p></article>
-        <article><code>response</code><p>The support chatbot&apos;s direct response to the customer&apos;s request.</p></article>
+        <CopyText label="session" value="A short conversation identifier. Repeat it when two or more rows are turns from the same customer-support session." />
+        <CopyText label="request" value="The customer's latest message about a retail order, including enough context to assess the reply." />
+        <CopyText label="response" value="The support chatbot's direct response to the customer's request." />
       </div>
       <h3>Categorical labels</h3><p>Keep <strong>Label kind</strong> set to <strong>Categorical</strong>, then add <code>resolved</code>, <code>unresolved</code>, and <code>hostile</code>. Their definitions are already included in the generation instructions above:</p><div className="demo-contract">
-        <article><code>resolved</code><p>The response correctly answers the request or provides a clear, sufficient next action.</p></article>
-        <article><code>unresolved</code><p>The response is incomplete, incorrect, irrelevant, or leaves the customer without a workable next step.</p></article>
-        <article><code>hostile</code><p>The response is rude, aggressive, blaming, threatening, mocking, or otherwise antagonistic toward the customer.</p></article>
+        <CopyText label="resolved" value="The response correctly answers the request or provides a clear, sufficient next action." />
+        <CopyText label="unresolved" value="The response is incomplete, incorrect, irrelevant, or leaves the customer without a workable next step." />
+        <CopyText label="hostile" value="The response is rude, aggressive, blaming, threatening, mocking, or otherwise antagonistic toward the customer." />
       </div>
       <h3>Size and label distribution</h3><div className="demo-values"><span><strong>Rows</strong>10</span><span><strong>resolved</strong>40% · 4 rows</span><span><strong>unresolved</strong>40% · 4 rows</span><span><strong>hostile</strong>20% · 2 rows</span></div><p>Enable the label mix, enter those percentages, confirm the preview shows <strong>4 / 4 / 2</strong>, then select <strong>Generate</strong>.</p>
     </section>
