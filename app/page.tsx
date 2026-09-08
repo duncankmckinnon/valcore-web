@@ -12,12 +12,6 @@ const routes = {
     ["Generate", "Control columns, characteristics, labels, and distributions"],
     ["From an evaluator", "Create compatible edge cases from its existing contract"],
   ],
-  evaluators: [
-    ["From scratch", "Define typed inputs, structured output, and scoring labels"],
-    ["From a prompt", "Generate a judge around exact fields and label meanings"],
-    ["From a dataset", "Inherit its columns and label schema automatically"],
-    ["With a harness", "Add code, planning, sub-agents, filesystem, or shell"],
-  ],
 } as const;
 
 export default function Home() {
@@ -167,14 +161,42 @@ export default function Home() {
               </p>
               <Link href="/docs/evaluators">Explore evaluators <span aria-hidden="true">→</span></Link>
             </div>
-            <div className="route-list">
-              {routes.evaluators.map(([title, description]) => (
-                <div className="route-row" key={title}>
-                  <i aria-hidden="true" />
-                  <div><strong>{title}</strong><span>{description}</span></div>
+            <div className="evaluator-editor-preview" aria-label="A compact preview of Valcore's evaluator version editor">
+              <div className="editor-toolbar">
+                <strong>v1 (frozen)</strong>
+                <span className="editor-badge frozen">Frozen</span>
+                <span className="editor-badge active">Active</span>
+                <span className="editor-action">New version</span>
+                <span className="editor-action">Export</span>
+                <span className="editor-action">Generate dataset</span>
+              </div>
+              <div className="editor-card identity-card">
+                <strong>Identity</strong>
+                <small>MODEL</small>
+                <code>gateway/anthropic:claude-sonnet-5</code>
+              </div>
+              <div className="editor-card judgment-card">
+                <strong>Judgment</strong>
+                <small>INSTRUCTIONS</small>
+                <p>You are a domain reviewer. Judge whether the response is accurate, safe, and complete.</p>
+                <small>PROMPT TEMPLATE</small>
+                <p>Review the response to <code>{`{customer_request}`}</code></p>
+              </div>
+              <div className="editor-mini-grid">
+                <div className="editor-card">
+                  <strong>Inputs</strong>
+                  <small>REQUIRED COLUMNS</small>
+                  <div className="editor-chips"><code>customer_request</code><code>response</code></div>
                 </div>
-              ))}
-              <div className="runtime-row">
+                <div className="editor-card">
+                  <strong>Output contract</strong>
+                  <small>OUTPUT FIELDS</small>
+                  <div className="field-row"><code>reasoning</code><span>str</span></div>
+                  <div className="field-row"><code>judgment</code><span>enum · score</span></div>
+                </div>
+              </div>
+              <div className="editor-capabilities"><span>⌄</span><strong>Capabilities &amp; tools</strong></div>
+              <div className="editor-foot">
                 <span>Run on</span><code>Claude</code><code>Codex</code><code>Cursor</code><code>Gateway</code>
               </div>
             </div>
