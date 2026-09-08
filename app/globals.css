@@ -97,6 +97,16 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .steps b { margin-right: 7px; color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; }
 .steps i { color: #394762; font-style: normal; }
 
+.platform-story { padding-block: 130px 24px; }
+.pydantic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+.pydantic-grid article { min-width: 0; padding: 28px; border: 1px solid rgba(105, 138, 208, .2); border-radius: 14px; background: linear-gradient(145deg, rgba(13, 22, 48, .9), rgba(6, 10, 23, .9)); box-shadow: 0 22px 60px rgba(0,0,0,.18); }
+.pydantic-grid code { color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: .08em; }
+.pydantic-grid h3, .execution-choice h3 { margin: 13px 0 11px; font-size: 20px; line-height: 1.2; letter-spacing: -.035em; }
+.pydantic-grid p, .execution-choice p { margin: 0; color: #8997b2; font-size: 13px; line-height: 1.65; }
+.execution-choice { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 13px; overflow: hidden; border: 1px solid rgba(105, 138, 208, .2); border-radius: 14px; background: rgba(105, 138, 208, .14); }
+.execution-choice > div { padding: 28px; background: radial-gradient(circle at 100% 0, rgba(23,108,255,.09), transparent 15rem), rgba(8,13,29,.94); }
+.execution-choice > div:last-child { background: radial-gradient(circle at 100% 0, rgba(124,77,255,.1), transparent 15rem), rgba(8,13,29,.94); }
+.execution-choice span { color: #75dff3; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .contract-story { padding-block: 130px 20px; }
 .compact-heading { margin-bottom: 54px; }
 .contract-map { display: grid; grid-template-columns: minmax(210px, 1fr) 150px minmax(210px, 1fr) 92px minmax(200px, .88fr); align-items: stretch; }
@@ -229,6 +239,22 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-note { display: grid; grid-template-columns: 125px 1fr; gap: 18px; margin: 25px 0; padding: 18px 20px; border: 1px solid rgba(0, 220, 255, .18); border-radius: 10px; background: rgba(0, 174, 255, .055); }
 .docs-note strong { color: #73e8ff; font-size: 12px; letter-spacing: .03em; }
 .docs-note div { color: #aab8d2; font-size: 14px; line-height: 1.6; }
+.docs-optional { margin: 26px 0; overflow: hidden; border: 1px solid rgba(0, 220, 255, .18); border-radius: 10px; background: rgba(0,174,255,.04); }
+.docs-optional summary { display: flex; align-items: center; gap: 10px; padding: 17px 20px; color: #c6d4ea; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; }
+.docs-optional summary::-webkit-details-marker { display: none; }
+.docs-optional summary::after { content: "+"; margin-left: auto; color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; font-weight: 400; }
+.docs-optional[open] summary::after { content: "−"; }
+.docs-optional summary span { padding: 4px 7px; border-radius: 999px; color: #72e6fa; background: rgba(0,220,255,.09); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+.docs-optional > div { padding: 20px; border-top: 1px solid rgba(0, 220, 255, .12); }
+.docs-optional > div > :last-child { margin-bottom: 0; }
+.demo-contract { display: grid; gap: 8px; margin: 18px 0 28px; }
+.demo-contract article { display: grid; grid-template-columns: 135px minmax(0, 1fr); gap: 18px; padding: 14px 16px; border: 1px solid rgba(95,134,213,.18); border-radius: 8px; background: rgba(9,15,33,.5); }
+.demo-contract code { color: #8adff4; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 700; }
+.demo-contract p { margin: 0; color: #929fba; font-size: 13px; line-height: 1.55; }
+.demo-values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 18px 0 24px; }
+.demo-values span { display: flex; flex-direction: column; gap: 5px; padding: 14px 16px; border: 1px solid rgba(95,134,213,.18); border-radius: 8px; color: #a8b5cd; background: rgba(9,15,33,.5); font-size: 13px; }
+.demo-values strong { color: #6fe1f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .09em; text-transform: uppercase; }
+.demo-values code { color: #bfdcf4; font-size: 11px; }
 .docs-download { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(0, 220, 255, .22); border-radius: 8px; color: #dffaff; background: linear-gradient(100deg, rgba(23, 108, 255, .15), rgba(124, 77, 255, .08)); font-size: 13px; font-weight: 700; text-decoration: none; }
 .docs-download:hover { border-color: rgba(0, 220, 255, .4); }
 .docs-content .agent-skill-actions { margin: 18px 0 22px; }
@@ -320,6 +346,7 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .eyebrow { justify-content: center; }
   .hero-visual { min-height: 470px; }
   .proof { flex-direction: column; }
+  .pydantic-grid { grid-template-columns: 1fr; }
   .contract-map { grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr); }
   .contract-map .run-link { display: none; }
   .result-node { grid-column: 1 / -1; min-height: 190px; margin-top: 18px; }
@@ -346,6 +373,8 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .steps { width: 100%; flex-direction: column; align-items: flex-start; }
   .steps i { display: none; }
   .contract-story { padding-block: 88px 10px; }
+  .platform-story { padding-block: 88px 10px; }
+  .execution-choice { grid-template-columns: 1fr; }
   .contract-map { grid-template-columns: 1fr; gap: 12px; }
   .contract-link { min-height: 78px; }
   .contract-link b { line-height: .8; transform: rotate(90deg); }
@@ -380,6 +409,8 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .docs-content section { margin-bottom: 48px; }
   .docs-content h2 { font-size: 25px; }
   .docs-note { grid-template-columns: 1fr; gap: 5px; }
+  .demo-contract article { grid-template-columns: 1fr; gap: 5px; }
+  .demo-values { grid-template-columns: 1fr; }
   .capability-cards { grid-template-columns: 1fr; }
   .decision-grid { grid-template-columns: 1fr; }
   .panel-window { grid-template-columns: 34px minmax(0, 1fr); }
