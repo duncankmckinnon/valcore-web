@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import { CopyCode } from "./copy-code";
 
 export function Code({ children }: { children: string }) {
-  return <pre className="code-block"><code>{children}</code></pre>;
+  return <CopyCode value={children} />;
 }
 
 export function Note({ title = "Good to know", children }: { title?: string; children: ReactNode }) {

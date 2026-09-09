@@ -43,10 +43,10 @@ export function DatasetPanelVisual() {
 
 export function EvaluatorPanelVisual() {
   return (
-    <PanelFigure title="Evaluator version editor" legend={["Version state", "Judgment and inputs", "Output contract", "Capabilities & tools"]}>
+    <PanelFigure title="Agent Evaluator editor" legend={["Version state", "Judgment and inputs", "Output contract", "Capabilities & tools"]}>
       <AppRail active="evaluators" />
       <div className="panel-main">
-        <div className="panel-top"><div><small>EVALUATOR</small><h3>Response quality</h3></div><span className="panel-button muted-button">Run</span></div>
+        <div className="panel-top"><div><small>AGENT EVALUATOR</small><h3>Response quality</h3></div><span className="panel-button muted-button">Run</span></div>
         <div className="panel-version"><Marker n={1} /><span>v4-quality-pass</span><b>ACTIVE</b><i>FROZEN</i><span>New version</span></div>
         <div className="panel-editor-grid">
           <div className="panel-editor-card"><Marker n={2} /><small>JUDGMENT</small><b>Instructions</b><p>Assess accuracy, relevance, and completeness…</p><b>Required columns</b><div className="preview-chips"><i>question</i><i>answer</i></div></div>
@@ -60,7 +60,7 @@ export function EvaluatorPanelVisual() {
 
 export function RunsPanelVisual() {
   return (
-    <PanelFigure title="Runs" legend={["Run configuration", "Execution mode", "Headline metrics", "Result inspection"]}>
+    <PanelFigure title="Experiment Runs" legend={["Run configuration", "Execution mode", "Headline metrics", "Result inspection"]}>
       <AppRail active="runs" />
       <div className="panel-main runs-visual">
         <div className="panel-top"><div><small>RUNS</small><h3>Validation results</h3></div><span className="panel-button">New run</span></div>
