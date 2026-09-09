@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og.png",
+        url: "/og-agentic-experimentation.png",
         width: 1200,
         height: 630,
-        alt: "Valcore: Agentic Experimentation Done the Right Way.",
+        alt: "Valcore: Agentic experimentation done the right way.",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Valcore: Agentic Experimentation Done the Right Way",
     description,
-    images: ["/og.png"],
+    images: ["/og-agentic-experimentation.png"],
   },
 };
 

@@ -74,6 +74,59 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="local-story shell" aria-labelledby="local-heading">
+        <header className="section-heading compact-heading">
+          <div className="eyebrow"><span /> Local by design</div>
+          <h2 id="local-heading">Valcore runs on your machine.<br />Persists locally, syncs to Logfire.</h2>
+          <p>
+            Authoring and execution stay local. The browser, CLI, and coding agents operate
+            the same persistent workspace, while every core surface can sync directly to its
+            counterpart in Pydantic Logfire.
+          </p>
+        </header>
+
+        <div className="local-runtime" aria-label="The browser and coding agents operate one local Valcore workspace">
+          <div className="local-entry-grid">
+            <article>
+              <span className="local-mode">Interactive</span>
+              <h3>Open the visual workbench</h3>
+              <p>Take full control in the interface: author contracts, label rows, compare results, and inspect the evidence behind every score.</p>
+              <strong className="local-entry-benefit">See and control every part of the workflow.</strong>
+            </article>
+            <article>
+              <span className="local-mode">Headless</span>
+              <h3>Hand the workflow to an agent</h3>
+              <p>Install the Valcore skill and let Claude, Codex, or Cursor create, version, run, inspect, and export through the CLI—even while the interface is closed.</p>
+              <strong className="local-entry-benefit">Use your agent to build and operate the system with you.</strong>
+            </article>
+          </div>
+
+          <div className="persistence-connector" aria-hidden="true"><i /><span>1:1 Locally and in Logfire</span><i /></div>
+
+          <div className="persistence-pair">
+            <div className="local-workspace">
+              <div>
+                <span className="local-mode">On your machine</span>
+                <h3>One workspace. Every interface.</h3>
+                <p>Datasets, Agent Evaluator versions, Experiment Runs, configuration, and results share one active local state.</p>
+              </div>
+              <div className="platform-stack"><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
+            </div>
+
+            <div className="persistence-sync" aria-hidden="true"><b>↔</b><span>sync</span></div>
+
+            <div className="persistence-layer">
+              <div>
+                <span className="local-mode">Persistent and shared</span>
+                <h3>Pydantic Logfire is the other half</h3>
+                <p>Valcore keeps the Pydantic objects intact. Sync to Logfire without translating your work into a second, proprietary data model.</p>
+              </div>
+              <div className="platform-stack"><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="platform-story shell" aria-labelledby="pydantic-heading">
         <header className="section-heading compact-heading">
           <div className="eyebrow"><span /> Pydantic native</div>
