@@ -2,11 +2,12 @@ export const docs = [
   {
     slug: "installation",
     title: "Installation",
-    description: "Install Valcore with Homebrew, uv, or pip.",
+    description: "Install Valcore on macOS, Linux, or Windows with Homebrew, uv, or pip.",
     sections: [
       { id: "requirements", title: "Requirements" },
       { id: "homebrew", title: "Homebrew install" },
       { id: "uv", title: "uv tool install" },
+      { id: "windows", title: "Windows" },
       { id: "pip", title: "pip install" },
       { id: "upgrading", title: "Upgrading" },
     ],

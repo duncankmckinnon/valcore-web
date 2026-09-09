@@ -7,10 +7,9 @@ export function GettingStartedDemo() {
   return <>
     <PageIntro eyebrow="A complete first experiment" title="Getting started">Create a real Dataset, generate a compatible Agent Evaluator, and measure it with a validation Experiment Run. You can finish the demo using a local coding agent without creating a model API key.</PageIntro>
 
-    <section id="install-demo"><h2>1. Install Valcore</h2><p>Choose either path. If you already work with a coding agent, hand it the Valcore skill and let it install and operate the tool for you. If you prefer the terminal, install the CLI with Homebrew.</p>
+    <section id="install-demo"><h2>1. Install Valcore</h2><p>Choose either path. If you already work with a coding agent, hand it the Valcore skill and let it install and operate the tool for you. If you prefer the terminal, use Homebrew on macOS or Linux, or uv on any supported platform including Windows.</p>
       <h3>Install with your coding agent</h3><p>Copy this prompt into Claude Code, Codex, or Cursor:</p><AgentSkillInstall /><p><a href={VALCORE_SKILL_SOURCE_URL}>Inspect the skill source on GitHub <span aria-hidden="true">→</span></a></p>
-      <h3>Or install with Homebrew</h3><Code>{`brew install duncankmckinnon/tap/valcore
-valcore --help`}</Code>
+      <h3>Or install from the terminal</h3><p>macOS or Linux with Homebrew:</p><Code>{`brew install duncankmckinnon/tap/valcore\nvalcore --help`}</Code><p>macOS, Linux, or Windows PowerShell with uv:</p><Code>{`uv tool install valcore\nvalcore --help`}</Code>
       <Note title="What the skill adds">The skill teaches your coding agent how to install and operate Valcore, create compatible resources, start Experiment Runs, and inspect results. Valcore itself remains a normal local CLI and web interface.</Note>
     </section>
 
