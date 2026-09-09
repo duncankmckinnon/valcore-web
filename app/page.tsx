@@ -77,9 +77,9 @@ export default function Home() {
       <section className="local-story shell" aria-labelledby="local-heading">
         <header className="section-heading compact-heading">
           <div className="eyebrow"><span /> Local by design</div>
-          <h2 id="local-heading">Valcore runs on your machine.<br />Persists locally, syncs to Logfire.</h2>
+          <h2 id="local-heading">Runs on your machine.<br />Syncs to Logfire.</h2>
           <p>
-            Authoring and execution stay local. The browser, CLI, and coding agents operate
+            Storage, authoring, and execution stay local. The browser, CLI, and coding agents operate
             the same persistent workspace, while every core surface can sync directly to its
             counterpart in Pydantic Logfire.
           </p>
