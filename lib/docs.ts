@@ -83,7 +83,8 @@ export const docs = [
     sections: [
       { id: "runs-panel", title: "Experiment Runs panel" },
       { id: "starting", title: "Starting an Experiment Run" },
-      { id: "validation", title: "Validation Experiment Runs", children: ["Interpreting results", "Logfire sync", "Thresholds API"] },
+      { id: "logfire-sync", title: "Logfire Experiment Runs" },
+      { id: "validation", title: "Validation Experiment Runs", children: ["Interpreting results", "Thresholds API"] },
       { id: "evaluation", title: "Unlabeled Experiment Runs" },
       { id: "comparisons", title: "Comparisons" },
     ],
