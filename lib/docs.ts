@@ -46,6 +46,7 @@ export const docs = [
     sections: [
       { id: "architecture", title: "Choose a project layout" },
       { id: "setup", title: "Set up Logfire" },
+      { id: "gateway", title: "Set up the AI Gateway" },
       { id: "credentials", title: "Credentials and scopes" },
       { id: "evaluators", title: "Agent Evaluator touchpoints" },
       { id: "datasets", title: "Dataset touchpoints" },

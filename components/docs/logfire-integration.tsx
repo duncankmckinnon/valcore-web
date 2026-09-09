@@ -28,12 +28,32 @@ valcore config get`}</Code><p>Valcore stores secrets in <code>~/.valcore/config.
       <Note title="Environment override"><code>LOGFIRE_TOKEN</code> overrides the stored tracing token. Read and write API keys are read from Valcore&apos;s config file. If you change a stored credential while the app is open, Settings applies the new integration immediately.</Note>
     </section>
 
+    <section id="gateway"><h2>Set up the Pydantic AI Gateway</h2><p>The Gateway is managed from your Logfire organization, but its API key has a different job from Logfire&apos;s tracing token and Dataset API keys: it authorizes hosted model requests.</p><ol className="docs-steps">
+      <li><strong>Enable the Gateway.</strong> In Logfire, open your organization and go to <strong>AI Engineering → Gateway</strong>. Activate the Gateway if it is not already enabled.</li>
+      <li><strong>Choose how models are funded.</strong> Use Pydantic&apos;s built-in providers with a Gateway balance, or add your own upstream provider credentials under <strong>Providers</strong>. Built-in providers may require a payment method and prepaid balance.</li>
+      <li><strong>Create a Gateway key.</strong> Open the Gateway&apos;s <strong>API Keys</strong> tab, create a project-scoped key for Valcore, and apply the spending limits appropriate for evaluation runs.</li>
+      <li><strong>Add the key to Valcore.</strong> Open <strong>Settings → Pydantic AI Gateway</strong> and paste the key, or configure it from the terminal:</li>
+    </ol><Code>{`valcore config set-key
+valcore config get`}</Code><p>Next, open <strong>Settings → Model Selection</strong>, clear the local CLI default, and use a <code>gateway/&lt;provider&gt;:&lt;model&gt;</code> route. One Gateway key can reach models from multiple configured providers.</p><Code>{`gateway/anthropic:claude-sonnet-5
+gateway/openai:gpt-5
+gateway/google:gemini-2.5-pro`}</Code>
+      <div className="touchpoint-grid">
+        <article><h3>Dataset generation</h3><p>Generate rows, suggested labels, controlled label distributions, and Dataset contracts with a hosted model.</p></article>
+        <article><h3>Agent Evaluator authoring</h3><p>Generate or refine prompts and contracts, then run a pinned hosted model with Pydantic AI tools and harness capabilities.</p></article>
+        <article><h3>Experiment Runs</h3><p>Execute the Agent Evaluator across a Dataset without depending on a locally installed and authenticated coding CLI.</p></article>
+      </div>
+      <Note title="Gateway access is not Logfire tracing">The Gateway key enables model calls and Gateway usage controls. Add the Logfire tracing token separately to send Valcore&apos;s Pydantic AI traces and Pydantic Experiment Runs to the Valcore Project.</Note>
+      <Note title="Local agents remain an option">Claude Code, Codex, and Cursor routes do not need a Gateway key. Select a local CLI default in Settings when you want generation and evaluation to reuse an existing coding-agent login.</Note>
+      <p>See Pydantic&apos;s official <a href="https://pydantic.dev/docs/logfire/manage/ai-gateway/" target="_blank" rel="noreferrer">AI Gateway setup guide</a> for provider configuration, project and user keys, regions, endpoints, spending limits, and usage telemetry.</p>
+    </section>
+
     <section id="credentials"><h2>Credentials and scopes</h2><div className="docs-table-wrap"><table className="docs-table"><thead><tr><th>Credential</th><th>Logfire location and scope</th><th>What it enables</th></tr></thead><tbody>
+      <tr><td><strong>Gateway API key</strong><code>gateway_api_key</code></td><td>Organization → AI Engineering → Gateway<br />Project-scoped Gateway key</td><td>Hosted model calls for Dataset generation, Agent Evaluator authoring, and Experiment Runs.</td></tr>
       <tr><td><strong>Tracing token</strong><code>logfire_token</code></td><td>Valcore Project<br />Project write token</td><td>Valcore service telemetry, Pydantic AI traces, and Pydantic Experiment Runs.</td></tr>
       <tr><td><strong>Read API key</strong><code>logfire_read_key</code></td><td>Source Agent Project<br /><code>project:read</code><br /><code>project:read_datasets</code></td><td>SQL trace queries, trace import, and listing or fetching hosted Datasets.</td></tr>
       <tr><td><strong>Write API key</strong><code>logfire_write_key</code></td><td>Valcore Project<br /><code>project:read_datasets</code><br /><code>project:write_datasets</code></td><td>Publishing local Datasets to Logfire&apos;s hosted Dataset store.</td></tr>
     </tbody></table></div><p>The tracing token does not query traces or publish Datasets. The API keys do not enable tracing. Keeping these duties separate gives each integration only the access it needs.</p><p>When both API keys target the same project, configure them together:</p><Code>{`valcore config set-logfire-key`}</Code>
-      <Note title="Not the Gateway key">The Pydantic AI Gateway API key selects and pays for hosted models. It is not a Logfire credential and does not enable any of the integrations on this page.</Note>
+      <Note title="Four credentials, four jobs">The Gateway key authorizes hosted model requests. The tracing token sends telemetry. The read key retrieves traces and hosted Datasets. The write key publishes hosted Datasets. Configure only the touchpoints your workflow uses.</Note>
     </section>
 
     <section id="evaluators"><h2>Agent Evaluator touchpoints</h2><p>The <strong>tracing token</strong> connects the evaluation runtime to the Valcore Project. Valcore configures its Logfire service as <code>valcore</code> and instruments Pydantic AI globally.</p><div className="touchpoint-grid">
