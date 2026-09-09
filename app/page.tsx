@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { InstallCommand } from "@/components/install-command";
 import { AgentSkillInstall } from "@/components/agent-skill-install";
+import { CopyCode } from "@/components/docs/copy-code";
 
 const routes = {
   datasets: [
@@ -72,6 +73,71 @@ export default function Home() {
           <i>→</i>
           <span><b>03</b> Measure agreement</span>
         </div>
+      </section>
+
+      <section className="local-story shell" aria-labelledby="local-heading">
+        <header className="section-heading compact-heading">
+          <div className="eyebrow"><span /> Local by design</div>
+          <h2 id="local-heading">The whole workbench runs on your machine.<br />Your agent can run it headlessly.</h2>
+          <p>
+            Authoring and execution stay local. The browser, CLI, and coding agents all operate
+            the same workspace—and the server does not need to be running for headless work.
+            Pydantic Logfire provides the persistent, shared layer with a direct counterpart for
+            every core Valcore surface.
+          </p>
+        </header>
+
+        <div className="local-runtime" aria-label="The browser and coding agents operate one local Valcore workspace">
+          <div className="local-entry-grid">
+            <article>
+              <span className="local-mode">Interactive</span>
+              <h3>Open the visual workbench</h3>
+              <p>Author contracts, label rows, compare results, and inspect traces in the interface.</p>
+              <div className="local-command"><CopyCode value="valcore serve" /></div>
+            </article>
+            <article>
+              <span className="local-mode">Headless</span>
+              <h3>Hand the workflow to an agent</h3>
+              <p>Install the Valcore skill and let Claude, Codex, or Cursor create, version, run, and export through the CLI.</p>
+              <div className="local-command"><CopyCode value="valcore run <evaluator> <dataset> --watch" /></div>
+            </article>
+          </div>
+
+          <div className="local-connector" aria-hidden="true"><i /><span>same local state</span><i /></div>
+
+          <div className="local-workspace">
+            <div>
+              <span className="local-mode">On your machine</span>
+              <h3>One workspace. Every interface.</h3>
+              <p>Datasets, Agent Evaluator versions, Experiment Runs, configuration, and results share one active local state.</p>
+            </div>
+            <code>~/.valcore/</code>
+            <div className="local-resources"><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
+          </div>
+
+          <div className="persistence-connector" aria-hidden="true"><i /><span>1:1 Pydantic persistence</span><i /></div>
+
+          <div className="persistence-layer">
+            <div className="persistence-copy">
+              <span className="local-mode">Persistent and shared</span>
+              <h3>Pydantic Logfire is the other half</h3>
+              <p>Valcore keeps the Pydantic objects intact. Sync to Logfire without translating your work into a second, proprietary data model.</p>
+            </div>
+            <div className="persistence-map">
+              <div><strong>Dataset</strong><b>↔</b><span>Pydantic Dataset</span></div>
+              <div><strong>Agent Evaluator</strong><b>↔</b><span>Pydantic AI Agent + trace</span></div>
+              <div><strong>Experiment Run</strong><b>↔</b><span>Pydantic Experiment</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="local-routing">
+          <div><span>Who operates Valcore</span><strong>You in the browser</strong><strong>or an agent through the CLI</strong></div>
+          <b aria-hidden="true">≠</b>
+          <div><span>Which model runs the evaluation</span><strong>Local Claude, Codex, or Cursor</strong><strong>or Pydantic AI Gateway</strong></div>
+          <p>Choose control and model routing independently. A headless agent can run either local or hosted Agent Evaluators.</p>
+        </div>
+        <div className="local-links"><Link href="/docs/getting-started">Try the complete local demo <span aria-hidden="true">→</span></Link><Link href="/docs/cli">Explore CLI automation <span aria-hidden="true">→</span></Link></div>
       </section>
 
       <section className="platform-story shell" aria-labelledby="pydantic-heading">
