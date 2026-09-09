@@ -281,6 +281,26 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .decision-grid article { padding: 18px; border: 1px solid rgba(95,134,213,.19); border-radius: 9px; background: rgba(9,15,33,.5); }
 .decision-grid h3 { margin: 0 0 8px; color: #bfeeff; font-size: 15px; }
 .decision-grid p { margin: 0; color: #929fba; font-size: 13px; line-height: 1.55; }
+.logfire-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: stretch; margin: 24px 0 28px; }
+.logfire-flow article { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: 1px solid rgba(95,134,213,.2); border-radius: 9px; background: rgba(9,15,33,.55); }
+.logfire-flow article.logfire-flow-core { border-color: rgba(0,220,255,.3); background: linear-gradient(145deg, rgba(23,108,255,.12), rgba(0,220,255,.05)); }
+.logfire-flow span { color: #6fe1f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.logfire-flow strong { color: #d9e5f7; font-size: 13px; line-height: 1.4; }
+.logfire-flow p { margin: auto 0 0; color: #8392ad; font-size: 11px; line-height: 1.5; }
+.logfire-flow-arrow { display: grid; place-items: center; color: #4f87c9; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.docs-table-wrap { margin: 22px 0; overflow-x: auto; border: 1px solid rgba(95,134,213,.2); border-radius: 9px; }
+.docs-table { width: 100%; border-collapse: collapse; background: rgba(9,15,33,.5); font-size: 12px; line-height: 1.55; }
+.docs-table th, .docs-table td { padding: 14px 15px; border-bottom: 1px solid rgba(95,134,213,.14); text-align: left; vertical-align: top; }
+.docs-table tr:last-child td { border-bottom: 0; }
+.docs-table th { color: #7789a8; background: rgba(14,22,43,.72); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+.docs-table td { color: #9eabc2; }
+.docs-table td strong, .docs-table td code { display: block; }
+.docs-table td strong { margin-bottom: 3px; color: #dce8fa; }
+.docs-table td code { width: fit-content; margin-top: 3px; color: #7ddff2; font-size: 10px; }
+.touchpoint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; margin: 22px 0 27px; }
+.touchpoint-grid article { padding: 17px; border: 1px solid rgba(95,134,213,.19); border-radius: 9px; background: rgba(9,15,33,.5); }
+.touchpoint-grid h3 { margin: 0 0 8px; color: #bfeeff; font-size: 14px; }
+.touchpoint-grid p { margin: 0; color: #929fba; font-size: 12px; line-height: 1.55; }
 
 /* Source-backed interface maps used in the product guides. */
 .panel-figure { margin: 28px 0 35px; }
@@ -422,6 +442,9 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .demo-values { grid-template-columns: 1fr; }
   .capability-cards { grid-template-columns: 1fr; }
   .decision-grid { grid-template-columns: 1fr; }
+  .logfire-flow { grid-template-columns: 1fr; }
+  .logfire-flow-arrow { transform: rotate(90deg); }
+  .touchpoint-grid { grid-template-columns: 1fr; }
   .panel-window { grid-template-columns: 34px minmax(0, 1fr); }
   .panel-rail { padding-inline: 4px; }
   .panel-rail i { display: none; }

@@ -4,6 +4,7 @@ import { DatasetPanelVisual, EvaluatorPanelVisual, RunsPanelVisual } from "./pan
 import { AgentSkillInstall } from "@/components/agent-skill-install";
 import { VALCORE_SKILL_SOURCE_URL } from "@/lib/links";
 import { GettingStartedDemo } from "./getting-started-demo";
+import { LogfireIntegration } from "./logfire-integration";
 
 function Installation() {
   return <>
@@ -89,8 +90,7 @@ export VALCORE_DEFAULT_MODEL=local/claude`}</Code><p>The <strong>Default model</
 
     <section id="precedence"><h2>Defaults and precedence</h2><p>Runtime settings resolve from highest to lowest priority: an explicit command or API argument, a <code>VALCORE_*</code> environment variable, <code>config.toml</code>, then the built-in default.</p><div className="decision-grid"><article><h3>Model</h3><p><code>VALCORE_DEFAULT_MODEL</code>, config key <code>local_cli_default</code>, config key <code>model</code>, then <code>gateway/anthropic:claude-sonnet-5</code>.</p></article><article><h3>Concurrency</h3><p><code>VALCORE_DEFAULT_CONCURRENCY</code>, config key <code>concurrency</code>, then <code>8</code>.</p></article><article><h3>Database</h3><p><code>--db</code>, <code>VALCORE_DB_PATH</code>, config key <code>db_path</code>, then the workspace database.</p></article></div><p><code>local_cli_default</code> outranks <code>model</code> within <code>config.toml</code>: a CLI selected in <strong>Settings → Model Selection</strong> wins over a stored Gateway model string, and clearing the selection falls back to <code>model</code>. Both are outranked by <code>VALCORE_DEFAULT_MODEL</code>.</p><p>An exported <code>PYDANTIC_AI_GATEWAY_API_KEY</code> or <code>LOGFIRE_TOKEN</code> takes precedence over its stored value. Logfire read and write API keys are read from the config file rather than exported to the environment.</p></section>
 
-    <section id="logfire"><h2>Logfire project boundary</h2><p>Most teams should use two projects. The <strong>source agent project</strong> contains production traces and any hosted datasets you want to sample; the read key points there. The <strong>Valcore project</strong> receives workbench telemetry, Logfire experiments, and published datasets; the tracing token and write key point there.</p><p>If both roles genuinely use one project, <code>valcore config set-logfire-key</code> stores one API key as both read and write. Otherwise, keep the scopes separate.</p><p>Valcore normally resolves Logfire links from the API key. Configure a fallback SQL Workbench URL only when project lookup is unavailable:</p><Code>{`valcore config set-logfire-explore-url \
-  https://logfire-us.pydantic.dev/org/project/explore`}</Code></section>
+    <section id="logfire"><h2>Logfire project boundary</h2><p>Most teams should use two projects. The <strong>source agent project</strong> contains production traces and any hosted Datasets you want to sample; the read key points there. The <strong>Valcore project</strong> receives workbench telemetry, Pydantic Experiment Runs, and published Datasets; the tracing token and write key point there.</p><p>If both roles genuinely use one project, <code>valcore config set-logfire-key</code> stores one API key as both read and write. Otherwise, keep the scopes separate.</p><p>See the <a href="/docs/logfire">Logfire integration guide</a> for credential creation, exact scopes, setup, verification, and every Agent Evaluator, Dataset, and Experiment Run touchpoint.</p></section>
 
     <section id="storage"><h2>Storage and security</h2><p>Configuration is stored at <code>~/.valcore/config.toml</code> with mode <code>0600</code>. Settings masks stored credentials, and <code>valcore config get</code> reports Logfire credentials only as present or absent. The Gateway key is also masked unless <code>--show-key</code> is explicitly supplied.</p><Code>{`valcore config get
 valcore config get --json
@@ -238,6 +238,7 @@ const content: Record<DocSlug, () => React.JSX.Element> = {
   installation: Installation,
   "getting-started": GettingStartedDemo,
   configuration: Configuration,
+  logfire: LogfireIntegration,
   datasets: Datasets,
   evaluators: Evaluators,
   experiments: Experiments,

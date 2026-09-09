@@ -40,6 +40,20 @@ export const docs = [
     ],
   },
   {
+    slug: "logfire",
+    title: "Logfire integration",
+    description: "Connect Agent Evaluator traces, Logfire-backed Datasets, and Pydantic Experiment Runs.",
+    sections: [
+      { id: "architecture", title: "Choose a project layout" },
+      { id: "setup", title: "Set up Logfire" },
+      { id: "credentials", title: "Credentials and scopes" },
+      { id: "evaluators", title: "Agent Evaluator touchpoints" },
+      { id: "datasets", title: "Dataset touchpoints" },
+      { id: "experiments", title: "Experiment Run touchpoints" },
+      { id: "verify", title: "Verify the integration" },
+    ],
+  },
+  {
     slug: "datasets",
     title: "Datasets",
     description: "Create, label, generate, import, and sync evaluation datasets.",
