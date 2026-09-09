@@ -24,7 +24,7 @@ export function LogfireIntegration() {
     </ol><Code>{`valcore config set-logfire-token
 valcore config set-logfire-read-key
 valcore config set-logfire-write-key
-valcore config get`}</Code><p>Valcore stores secrets in <code>~/.valcore/config.toml</code> with file mode <code>0600</code>. Settings and <code>config get</code> report whether a secret is configured without returning its value.</p>
+valcore config get`}</Code><p>Valcore stores secrets in <code>~/.valcore/config.toml</code> (<code>$HOME\.valcore\config.toml</code> on Windows). It uses file mode <code>0600</code> on macOS and Linux and the current user&apos;s filesystem ACLs on Windows. Settings and <code>config get</code> report whether a secret is configured without returning its value.</p>
       <Note title="Environment override"><code>LOGFIRE_TOKEN</code> overrides the stored tracing token. Read and write API keys are read from Valcore&apos;s config file. If you change a stored credential while the app is open, Settings applies the new integration immediately.</Note>
     </section>
 
