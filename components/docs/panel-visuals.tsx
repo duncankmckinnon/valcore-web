@@ -16,8 +16,8 @@ function PanelFigure({ title, children, legend }: { title: string; children: Rea
   );
 }
 
-function AppRail({ active }: { active: "datasets" | "evaluators" | "runs" }) {
-  return <div className="panel-rail" aria-hidden="true"><b>V</b>{["overview", "datasets", "evaluators", "runs"].map((item) => <i className={item === active ? "active" : ""} key={item}>{item.slice(0, 2)}</i>)}</div>;
+function AppRail({ active }: { active: "datasets" | "annotations" | "evaluators" | "runs" }) {
+  return <div className="panel-rail" aria-hidden="true"><b>V</b>{["overview", "datasets", "annotations", "evaluators", "runs"].map((item) => <i className={item === active ? "active" : ""} key={item}>{item.slice(0, 2)}</i>)}</div>;
 }
 
 export function DatasetPanelVisual() {
@@ -53,6 +53,24 @@ export function EvaluatorPanelVisual() {
           <div className="panel-editor-card"><Marker n={3} /><small>OUTPUT CONTRACT</small><b>Score kind</b><p>categorical</p><b>Score field</b><p>quality</p><div className="preview-chips"><i>pass</i><i>review</i><i>fail</i></div></div>
         </div>
         <div className="panel-capabilities"><Marker n={4} /><b>⌄ Capabilities &amp; tools</b><span>☑ CodeMode</span><span>☑ FileSystem</span><span>☐ Shell</span></div>
+      </div>
+    </PanelFigure>
+  );
+}
+
+export function AnnotationsPanelVisual() {
+  return (
+    <PanelFigure title="Annotation Queue" legend={["Label Set and progress", "Row-by-row review", "Suggestion and source", "Keyboard-first review"]}>
+      <AppRail active="annotations" />
+      <div className="panel-main">
+        <div className="panel-top"><div><small>ANNOTATIONS</small><h3>quality · support-quality</h3></div><span className="panel-button muted-button">Shortcuts (?)</span></div>
+        <div className="panel-stats"><Marker n={1} /><span><b>21</b> / 32 annotated</span></div>
+        <div className="panel-table">
+          <div className="panel-tr panel-th"><span>Row</span><span>Labels</span><span>Suggested</span><span>Source</span></div>
+          <div className="panel-tr"><Marker n={2} /><span>Refund after 45 days…</span><span className="panel-pill">fail</span><span><Marker n={3} />review</span><span>generated</span></div>
+          <div className="panel-tr"><span>Ambiguous refund request</span><span className="panel-pill">pass</span><span>pass</span><span className="panel-good">accepted</span></div>
+        </div>
+        <div className="panel-detail"><Marker n={4} /><span>j/k move · 1–9 toggle label · a accept · u clear · Enter opens row</span></div>
       </div>
     </PanelFigure>
   );
