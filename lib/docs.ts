@@ -62,8 +62,20 @@ export const docs = [
     sections: [
       { id: "dataset-panel", title: "Dataset panel tour" },
       { id: "adding", title: "Adding datasets", children: ["Blank entries", "CSV or JSON upload", "Logfire traces query", "Logfire dataset syncing", "Synthetic datasets"] },
-      { id: "labeling", title: "Labeling datasets", children: ["Numeric labels", "Categorical labels"] },
+      { id: "labeling", title: "Labeling datasets" },
       { id: "writing", title: "Writing datasets" },
+    ],
+  },
+  {
+    slug: "annotations",
+    title: "Annotations",
+    description: "Define Label Sets and work a Dataset's rows through the keyboard-driven Annotation Queue.",
+    sections: [
+      { id: "overview", title: "Label Sets and Annotations" },
+      { id: "label-sets", title: "Creating and managing Label Sets" },
+      { id: "queue", title: "The Annotation Queue", children: ["Keyboard shortcuts", "Suggestions and acceptance"] },
+      { id: "row-view", title: "The single-row view" },
+      { id: "validation", title: "Feeding Validation runs" },
     ],
   },
   {
