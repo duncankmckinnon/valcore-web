@@ -177,21 +177,43 @@ export default function Home() {
       <section className="contract-story shell" id="workflow">
         <header className="section-heading compact-heading">
           <div className="eyebrow"><span /> The connected workflow</div>
-          <h2>Start from either side.<br />Keep the contract intact.</h2>
+          <h2>Start from any side.<br />Keep the contract intact.</h2>
           <p>
-            A Dataset can generate its Agent Evaluator. An Agent Evaluator can generate its Dataset.
-            Your Agent&apos;s responses join the same rows, so the evaluator scores exactly what it said.
-            Columns and labels stay compatible, so you spend less time wiring tools together.
+            Your Agent runs on a Dataset and adds its responses as new columns on the same rows.
+            It can also generate the Agent Evaluator that scores it, and Datasets and Agent Evaluators
+            generate each other. Every step shares one contract, so nothing needs rewiring.
           </p>
         </header>
 
-        <div className="contract-map" aria-label="Datasets and Agent Evaluators share a contract and feed versioned Experiment Runs">
+        <div className="contract-map" aria-label="An Agent runs on Datasets and generates Agent Evaluators. Datasets and Agent Evaluators share a contract and feed versioned Experiment Runs">
+          <div className="agent-tier">
+            <article className="contract-node agent-node">
+              <div>
+                <span className="node-kicker">System under test</span>
+                <h3>Agent</h3>
+              </div>
+              <div>
+                <div className="schema-line"><code>inputs</code><small>question</small></div>
+                <div className="schema-line derived-line"><code>output</code><small>response</small></div>
+              </div>
+            </article>
+            <div className="agent-branch branch-left" aria-hidden="true">
+              <div className="branch-label"><span>runs on Datasets</span><small>adds response columns</small></div>
+              <i />
+            </div>
+            <div className="agent-branch branch-stem" aria-hidden="true" />
+            <div className="agent-branch branch-right" aria-hidden="true">
+              <div className="branch-label"><span>generates Agent Evaluators</span><small>from its inputs and outputs</small></div>
+              <i />
+            </div>
+          </div>
+
           <article className="contract-node">
             <span className="node-kicker">Evidence</span>
             <h3>Dataset</h3>
             <div className="schema-line"><code>question</code><small>string</small></div>
-            <div className="schema-line"><code>response</code><small>from Agent v2</small></div>
             <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
+            <div className="schema-line derived-line"><code>response</code><small>Agent v2 · run 0</small></div>
           </article>
 
           <div className="contract-link" aria-hidden="true">
@@ -214,7 +236,7 @@ export default function Home() {
             <span className="node-kicker">Release evidence</span>
             <h3>Experiment Run</h3>
             <strong>94.2%</strong>
-            <p>agreement · κ · F1 · confusion matrix</p>
+            <p>label agreement · κ · F1 · a score for every Agent response</p>
             <small>traced and synced to Logfire</small>
           </article>
         </div>
