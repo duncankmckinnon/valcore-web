@@ -16,8 +16,25 @@ function PanelFigure({ title, children, legend }: { title: string; children: Rea
   );
 }
 
-function AppRail({ active }: { active: "datasets" | "annotations" | "evaluators" | "runs" }) {
-  return <div className="panel-rail" aria-hidden="true"><b>V</b>{["overview", "datasets", "annotations", "evaluators", "runs"].map((item) => <i className={item === active ? "active" : ""} key={item}>{item.slice(0, 2)}</i>)}</div>;
+function AppRail({ active }: { active: "agents" | "evaluators" | "datasets" | "annotations" | "runs" }) {
+  return <div className="panel-rail" aria-hidden="true"><b>V</b>{["agents", "evaluators", "datasets", "annotations", "runs"].map((item) => <i className={item === active ? "active" : ""} key={item}>{item.slice(0, 2)}</i>)}</div>;
+}
+
+export function AgentPanelVisual() {
+  return (
+    <PanelFigure title="Agent editor" legend={["Version actions", "Instructions and inputs", "Spec and capabilities", "Response columns"]}>
+      <AppRail active="agents" />
+      <div className="panel-main">
+        <div className="panel-top"><div><small>AGENT</small><h3>support-agent</h3></div><span className="panel-button">Run agent</span></div>
+        <div className="panel-version"><Marker n={1} /><span>v2</span><i>FROZEN</i><span>Create evaluator</span><span>Logfire sync</span><span>Copy</span></div>
+        <div className="panel-editor-grid">
+          <div className="panel-editor-card"><Marker n={2} /><small>BINDING</small><b>Instructions</b><p>Resolve the customer&apos;s request in two or three sentences…</p><b>Input fields</b><div className="preview-chips"><i>request</i><i>order_status</i></div></div>
+          <div className="panel-editor-card"><Marker n={3} /><small>AGENTSPEC</small><b>Model</b><p>gateway/anthropic:claude-sonnet-5</p><b>Capabilities</b><div className="preview-chips"><i>Planning</i><i>MCP</i></div></div>
+        </div>
+        <div className="panel-capabilities"><Marker n={4} /><b>Response columns</b><span>reply</span><span>escalate</span></div>
+      </div>
+    </PanelFigure>
+  );
 }
 
 export function DatasetPanelVisual() {
@@ -82,7 +99,7 @@ export function RunsPanelVisual() {
       <AppRail active="runs" />
       <div className="panel-main runs-visual">
         <div className="panel-top"><div><small>RUNS</small><h3>Validation results</h3></div><span className="panel-button">New run</span></div>
-        <div className="panel-run-config"><Marker n={1} /><span><small>Evaluator / version</small><b>response-quality / v4</b></span><span><small>Dataset</small><b>support-quality</b></span><span><small>Run kind</small><b>Validation</b></span></div>
+        <div className="panel-run-config"><Marker n={1} /><span><small>Evaluator / version</small><b>response-quality / v4</b></span><span><small>Data</small><b>support-quality</b></span><span><small>Run kind</small><b>Validation</b></span></div>
         <div className="panel-experiment"><Marker n={2} /><span>☑ Run as a Logfire experiment</span><i>concurrency 8</i></div>
         <div className="panel-metrics"><Marker n={3} /><span><small>Accuracy</small><b>94.2%</b></span><span><small>Cohen&apos;s κ</small><b>0.891</b></span><span><small>n</small><b>128</b></span></div>
         <div className="panel-results"><div><Marker n={4} /><b>Disagreements only</b><i>Errors only</i></div><div className="panel-tr panel-th"><span>Row</span><span>Score</span><span>Label</span><span>Agreement</span></div><div className="panel-tr"><span>Refund after 45 days…</span><span>review</span><span>fail</span><span className="panel-warn">disagree</span></div></div>

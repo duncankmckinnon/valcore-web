@@ -52,7 +52,27 @@ export const docs = [
       { id: "evaluators", title: "Agent Evaluator touchpoints" },
       { id: "datasets", title: "Dataset touchpoints" },
       { id: "experiments", title: "Experiment Run touchpoints" },
+      { id: "agents", title: "Agent touchpoints" },
+      { id: "frontend", title: "Browser observability" },
       { id: "verify", title: "Verify the integration" },
+    ],
+  },
+  {
+    slug: "agents",
+    title: "Agents",
+    description: "Define versioned Agents under test, run them over Datasets, and score their responses with Agent Evaluators.",
+    sections: [
+      { id: "overview", title: "Agents and Agent Evaluators" },
+      { id: "agent-panel", title: "Agent panel tour" },
+      { id: "defining", title: "Defining an Agent version" },
+      { id: "import-export", title: "Importing and exporting specs" },
+      { id: "versioning", title: "Versioning Agents" },
+      { id: "trials", title: "Trying an input" },
+      { id: "dataset-runs", title: "Running over a Dataset" },
+      { id: "derivations", title: "Derivations and derived views" },
+      { id: "evaluating", title: "Evaluating Agent responses", children: ["Generating an Agent Evaluator", "Choosing the data contract", "Comparing Agent versions"] },
+      { id: "prompt-sync", title: "Logfire prompt sync" },
+      { id: "cli", title: "CLI reference" },
     ],
   },
   {
@@ -84,7 +104,7 @@ export const docs = [
     description: "Author reliable Agent Evaluators and evolve them safely.",
     sections: [
       { id: "evaluator-panel", title: "Agent Evaluator panel" },
-      { id: "creating", title: "Creating Agent Evaluators", children: ["Manual creation", "Generating from a Dataset"] },
+      { id: "creating", title: "Creating Agent Evaluators", children: ["Manual creation", "Generating from a Dataset", "Generating from an Agent"] },
       { id: "versioning", title: "Versioning Agent Evaluators" },
       { id: "capabilities", title: "Pydantic AI harness capabilities" },
     ],
@@ -96,6 +116,7 @@ export const docs = [
     sections: [
       { id: "runs-panel", title: "Experiment Runs panel" },
       { id: "starting", title: "Starting an Experiment Run" },
+      { id: "agent-runs", title: "Agent runs and responses" },
       { id: "logfire-sync", title: "Logfire Experiment Runs" },
       { id: "validation", title: "Validation Experiment Runs", children: ["Interpreting results", "Thresholds API"] },
       { id: "evaluation", title: "Unlabeled Experiment Runs" },
@@ -109,6 +130,7 @@ export const docs = [
     sections: [
       { id: "mental-model", title: "App and CLI" },
       { id: "commands", title: "Command reference" },
+      { id: "upgrading", title: "Upgrading from the old run commands" },
       { id: "packages", title: "Portable eval packages" },
       { id: "ci", title: "Using Valcore in CI" },
       { id: "skills", title: "Agent skills" },

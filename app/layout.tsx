@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const description =
-  "Agentic experimentation done the right way: build compatible Datasets and Agent Evaluators, then validate, compare, trace, and sync every Experiment Run.";
+  "Agentic experimentation done the right way: run your Agents over compatible Datasets, score their responses with Agent Evaluators, then validate, compare, trace, and sync every Experiment Run.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://e-valcore.com"),
