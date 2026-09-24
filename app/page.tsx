@@ -5,6 +5,13 @@ import { InstallCommand } from "@/components/install-command";
 import { AgentSkillInstall } from "@/components/agent-skill-install";
 
 const routes = {
+  agents: [
+    ["Define", "Model, instructions, and inputs as a portable AgentSpec"],
+    ["Import", "Load the YAML or JSON spec you already run"],
+    ["Try an input", "Check a response before committing to a full run"],
+    ["Run a Dataset", "Stage every row's response, then save or discard"],
+    ["Score the responses", "Point an Agent Evaluator at the saved run"],
+  ],
   datasets: [
     ["Hand-author", "Shape a small golden set row by row"],
     ["Import", "Upload an existing CSV or JSON test set"],
@@ -21,12 +28,12 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
-          <div className="eyebrow"><span /> The workbench for Agent Evaluators</div>
+          <div className="eyebrow"><span /> The workbench for Agents and their evaluators</div>
           <h1>Agentic<br />experimentation<br /><em>done the right way.</em></h1>
           <p className="lede">
-            Valcore connects flexible Datasets, fully harnessed Agent Evaluators, and statistical
-            Experiment Runs in one workflow. Start with either the Agent Evaluator or the evidence,
-            generate the other from the same data contract, then version and compare every result.
+            Valcore connects the Agent you are improving, flexible Datasets, fully harnessed Agent
+            Evaluators, and statistical Experiment Runs in one workflow. Run your Agent over real cases,
+            score what it said on the same data contract, then version and compare every result.
           </p>
           <div className="actions">
             <InstallCommand />
@@ -66,11 +73,11 @@ export default function Home() {
       <section className="proof shell" aria-label="Valcore workflow">
         <p>One connected system—not a pile of eval utilities.</p>
         <div className="steps">
-          <span><b>01</b> Shape the contract</span>
+          <span><b>01</b> Define the Agent</span>
           <i>→</i>
           <span><b>02</b> Build Agent Evaluator + evidence</span>
           <i>→</i>
-          <span><b>03</b> Measure agreement</span>
+          <span><b>03</b> Measure and compare</span>
         </div>
       </section>
 
@@ -90,7 +97,7 @@ export default function Home() {
             <article>
               <span className="local-mode">Interactive</span>
               <h3>Open the visual workbench</h3>
-              <p>Take full control in the interface: author contracts, label rows, compare results, and inspect the evidence behind every score.</p>
+              <p>Take full control in the interface: define Agents, author contracts, label rows, compare results, and inspect the evidence behind every score.</p>
               <strong className="local-entry-benefit">See and control every part of the workflow.</strong>
             </article>
             <article>
@@ -108,9 +115,9 @@ export default function Home() {
               <div>
                 <span className="local-mode">On your machine</span>
                 <h3>One workspace. Every interface.</h3>
-                <p>Datasets, Agent Evaluator versions, Experiment Runs, configuration, and results share one active local state.</p>
+                <p>Agents, Datasets, Agent Evaluator versions, Experiment Runs, configuration, and results share one active local state.</p>
               </div>
-              <div className="platform-stack"><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
+              <div className="platform-stack"><span>Agent</span><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
             </div>
 
             <div className="persistence-sync" aria-hidden="true"><b>↔</b><span>sync</span></div>
@@ -121,7 +128,7 @@ export default function Home() {
                 <h3>Pydantic Logfire is the other half</h3>
                 <p>Valcore keeps the Pydantic objects intact. Sync to Logfire without translating your work into a second, proprietary data model.</p>
               </div>
-              <div className="platform-stack"><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
+              <div className="platform-stack"><span>Agent prompts</span><span>Dataset</span><span>Agent Evaluator</span><span>Experiment Run</span></div>
             </div>
           </div>
         </div>
@@ -139,8 +146,8 @@ export default function Home() {
         <div className="pydantic-grid">
           <article>
             <code>pydantic-ai-harness</code>
-            <h3>Agent Evaluators with real capabilities</h3>
-            <p>Typed inputs and outputs, structured scoring, tools, CodeMode, planning, sub-agents, filesystem, and shell.</p>
+            <h3>Agents and evaluators with real capabilities</h3>
+            <p>Portable AgentSpec definitions, typed inputs and outputs, structured scoring, MCP, tools, CodeMode, planning, filesystem, and shell.</p>
           </article>
           <article>
             <code>pydantic-evals</code>
@@ -150,14 +157,14 @@ export default function Home() {
           <article>
             <code>logfire</code>
             <h3>Every result connected to its trace</h3>
-            <p>Trace every Agent Evaluator call, sync Experiment Runs automatically, and move Datasets in either direction.</p>
+            <p>Trace every Agent and Agent Evaluator call, sync Experiment Runs automatically, keep Agent prompts in managed variables, and move Datasets in either direction.</p>
           </article>
         </div>
         <div className="execution-choice">
           <div>
             <span>Use what is already on your machine</span>
             <h3>Run locally with Claude, Codex, or Cursor</h3>
-            <p>Generate Datasets and Agent Evaluators, then execute Experiment Runs through an authenticated coding-agent CLI. No new model key required.</p>
+            <p>Generate Datasets and Agent Evaluators, then run Agents and Experiment Runs through an authenticated coding-agent CLI. No new model key required.</p>
           </div>
           <div>
             <span>Or choose a hosted model</span>
@@ -173,8 +180,8 @@ export default function Home() {
           <h2>Start from either side.<br />Keep the contract intact.</h2>
           <p>
             A Dataset can generate its Agent Evaluator. An Agent Evaluator can generate its Dataset.
-            Columns and labels stay compatible, so you spend less time wiring tools together
-            and more time improving the judgment.
+            Your Agent&apos;s responses join the same rows, so the evaluator scores exactly what it said.
+            Columns and labels stay compatible, so you spend less time wiring tools together.
           </p>
         </header>
 
@@ -183,7 +190,7 @@ export default function Home() {
             <span className="node-kicker">Evidence</span>
             <h3>Dataset</h3>
             <div className="schema-line"><code>question</code><small>string</small></div>
-            <div className="schema-line"><code>response</code><small>string</small></div>
+            <div className="schema-line"><code>response</code><small>from Agent v2</small></div>
             <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
           </article>
 
@@ -224,6 +231,28 @@ export default function Home() {
           <article className="pattern-card expanded-pattern">
             <div className="pattern-number">01</div>
             <div className="pattern-copy">
+              <span>The system under test</span>
+              <h3>Agents measured where they live</h3>
+              <p>
+                Store the Agent you are improving as a versioned Pydantic AI spec, run it over
+                any Dataset, and keep each run&apos;s responses as a numbered overlay on the same rows.
+              </p>
+              <Link href="/docs/agents">Explore Agents <span aria-hidden="true">→</span></Link>
+            </div>
+            <div className="route-list">
+              {routes.agents.map(([title, description]) => (
+                <div className="route-row" key={title}>
+                  <i aria-hidden="true" />
+                  <div><strong>{title}</strong><span>{description}</span></div>
+                </div>
+              ))}
+              <div className="portability-row"><span>Sync</span><code>Logfire variables</code><code>AgentSpec YAML</code></div>
+            </div>
+          </article>
+
+          <article className="pattern-card expanded-pattern">
+            <div className="pattern-number">02</div>
+            <div className="pattern-copy">
               <span>Representative evidence</span>
               <h3>Datasets that fit the work</h3>
               <p>
@@ -244,7 +273,7 @@ export default function Home() {
           </article>
 
           <article className="pattern-card expanded-pattern">
-            <div className="pattern-number">02</div>
+            <div className="pattern-number">03</div>
             <div className="pattern-copy">
               <span>More than a prompt</span>
               <h3>Agent Evaluators that act like agents</h3>
@@ -296,13 +325,13 @@ export default function Home() {
           </article>
 
           <article className="pattern-card expanded-pattern">
-            <div className="pattern-number">03</div>
+            <div className="pattern-number">04</div>
             <div className="pattern-copy">
               <span>Evidence, not vibes</span>
               <h3>Experiment Runs that prove performance</h3>
               <p>
                 Run an Agent Evaluator against a human-labeled Dataset, inspect every disagreement, and
-                compare prompt, capability, or model changes on the exact same cases.
+                compare Agent, prompt, capability, or model changes on the exact same cases.
               </p>
               <Link href="/docs/experiments">Explore Experiment Runs <span aria-hidden="true">→</span></Link>
             </div>

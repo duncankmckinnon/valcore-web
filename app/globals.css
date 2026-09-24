@@ -318,6 +318,7 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .docs-table td strong, .docs-table td code { display: block; }
 .docs-table td strong { margin-bottom: 3px; color: #dce8fa; }
 .docs-table td code { width: fit-content; margin-top: 3px; color: #7ddff2; font-size: 10px; }
+.docs-table.inline-code td code { display: inline; margin-top: 0; }
 .touchpoint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; margin: 22px 0 27px; }
 .touchpoint-grid article { padding: 17px; border: 1px solid rgba(95,134,213,.19); border-radius: 9px; background: rgba(9,15,33,.5); }
 .touchpoint-grid h3 { margin: 0 0 8px; color: #bfeeff; font-size: 14px; }
