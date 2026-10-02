@@ -39,7 +39,7 @@ gateway/openai:gpt-5
 gateway/google:gemini-2.5-pro`}</Code>
       <div className="touchpoint-grid">
         <article><h3>Dataset generation</h3><p>Generate rows, suggested labels, controlled label distributions, and Dataset contracts with a hosted model.</p></article>
-        <article><h3>Agent Evaluator authoring</h3><p>Generate or refine prompts and contracts, then run a pinned hosted model with Pydantic AI tools and harness capabilities.</p></article>
+        <article><h3>Agent and Agent Evaluator authoring</h3><p>Draft Agents from a prompt, generate or refine Agent Evaluator prompts and contracts, then run a pinned hosted model with Pydantic AI tools and harness capabilities.</p></article>
         <article><h3>Experiment Runs</h3><p>Execute the Agent Evaluator across a Dataset without depending on a locally installed and authenticated coding CLI.</p></article>
       </div>
       <Note title="Gateway access is not Logfire tracing">The Gateway key enables model calls and Gateway usage controls. Add the Logfire tracing token separately to send Valcore&apos;s Pydantic AI traces and Pydantic Experiment Runs to the Valcore Project.</Note>
@@ -48,7 +48,7 @@ gateway/google:gemini-2.5-pro`}</Code>
     </section>
 
     <section id="credentials"><h2>Credentials and scopes</h2><div className="docs-table-wrap"><table className="docs-table"><thead><tr><th>Credential</th><th>Logfire location and scope</th><th>What it enables</th></tr></thead><tbody>
-      <tr><td><strong>Gateway API key</strong><code>gateway_api_key</code></td><td>Organization → AI Engineering → Gateway<br />Project-scoped Gateway key</td><td>Hosted model calls for Dataset generation, Agent Evaluator authoring, and Experiment Runs.</td></tr>
+      <tr><td><strong>Gateway API key</strong><code>gateway_api_key</code></td><td>Organization → AI Engineering → Gateway<br />Project-scoped Gateway key</td><td>Hosted model calls for Dataset generation, Agent and Agent Evaluator authoring, and Experiment Runs.</td></tr>
       <tr><td><strong>Tracing token</strong><code>logfire_token</code></td><td>Valcore Project<br />Project write token</td><td>Valcore service telemetry, Pydantic AI traces, and Pydantic Experiment Runs.</td></tr>
       <tr><td><strong>Read API key</strong><code>logfire_read_key</code></td><td>Source Agent Project<br /><code>project:read</code><br /><code>project:read_datasets</code></td><td>SQL trace queries, trace import, and listing or fetching hosted Datasets.</td></tr>
       <tr><td><strong>Write API key</strong><code>logfire_write_key</code></td><td>Valcore Project<br /><code>project:read_datasets</code><br /><code>project:write_datasets</code><br />For prompt sync, also <code>project:read_variables</code> and <code>project:write_variables</code></td><td>Publishing local Datasets to Logfire&apos;s hosted Dataset store, and syncing Agent prompts with managed variables.</td></tr>
@@ -59,7 +59,7 @@ gateway/google:gemini-2.5-pro`}</Code>
 
     <section id="evaluators"><h2>Agent Evaluator touchpoints</h2><p>The <strong>tracing token</strong> connects the evaluation runtime to the Valcore Project. Valcore configures its Logfire service as <code>valcore</code> and instruments Pydantic AI globally.</p><div className="touchpoint-grid">
       <article><h3>Agent Evaluator execution</h3><p>Inspect the model request, structured response, timing, errors, and any Pydantic AI tool or capability activity emitted by a Gateway-backed Agent Evaluator.</p></article>
-      <article><h3>Generation and refinement</h3><p>Dataset generation, Agent Evaluator generation, and plain-language refinement use the same Pydantic AI instrumentation.</p></article>
+      <article><h3>Generation and refinement</h3><p>Agent, Dataset, and Agent Evaluator generation and plain-language refinement use the same Pydantic AI instrumentation. Agent drafts appear as <code>agent_generator</code>.</p></article>
       <article><h3>Run hierarchy</h3><p>Each normal run emits a <code>valcore.run</code> parent span and one <code>valcore.score_row</code> child per Dataset row, with run kind, version, Dataset, and concurrency context. The parent records the run&apos;s status and metrics when it closes.</p></article>
     </div><Note title="Local model boundary">A local Claude, Codex, or Cursor route still participates in Valcore&apos;s run and row tracing. The coding CLI is a separate process, so its private internal tool activity is not represented as Pydantic AI child spans.</Note></section>
 

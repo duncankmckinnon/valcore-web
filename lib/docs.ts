@@ -60,11 +60,12 @@ export const docs = [
   {
     slug: "agents",
     title: "Agents",
-    description: "Define versioned Agents under test, run them over Datasets, and score their responses with Agent Evaluators.",
+    description: "Define or generate versioned Agents under test, run them over Datasets, and score their responses with Agent Evaluators.",
     sections: [
       { id: "overview", title: "Agents and Agent Evaluators" },
       { id: "agent-panel", title: "Agent panel tour" },
       { id: "defining", title: "Defining an Agent version" },
+      { id: "generating", title: "Generating from a prompt" },
       { id: "import-export", title: "Importing and exporting specs" },
       { id: "versioning", title: "Versioning Agents" },
       { id: "trials", title: "Trying an input" },
