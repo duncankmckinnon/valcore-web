@@ -7,6 +7,7 @@ import { AgentSkillInstall } from "@/components/agent-skill-install";
 const routes = {
   agents: [
     ["Define", "Model, instructions, and inputs as a portable AgentSpec"],
+    ["Generate", "Describe the Agent and review the first version a model drafts"],
     ["Import", "Load the YAML or JSON spec you already run"],
     ["Try an input", "Check a response before committing to a full run"],
     ["Run a Dataset", "Stage every row's response, then save or discard"],
@@ -164,7 +165,7 @@ export default function Home() {
           <div>
             <span>Use what is already on your machine</span>
             <h3>Run locally with Claude, Codex, or Cursor</h3>
-            <p>Generate Datasets and Agent Evaluators, then run Agents and Experiment Runs through an authenticated coding-agent CLI. No new model key required.</p>
+            <p>Generate Agents, Datasets, and Agent Evaluators, then run Agents and Experiment Runs through an authenticated coding-agent CLI. No new model key required.</p>
           </div>
           <div>
             <span>Or choose a hosted model</span>
@@ -256,8 +257,9 @@ export default function Home() {
               <span>The system under test</span>
               <h3>Agents measured where they live</h3>
               <p>
-                Store the Agent you are improving as a versioned Pydantic AI spec, run it over
-                any Dataset, and keep each run&apos;s responses as a numbered overlay on the same rows.
+                Store the Agent you are improving as a versioned Pydantic AI spec—written by hand,
+                imported, or drafted from a prompt—then run it over any Dataset and keep each
+                run&apos;s responses as a numbered overlay on the same rows.
               </p>
               <Link href="/docs/agents">Explore Agents <span aria-hidden="true">→</span></Link>
             </div>
