@@ -169,6 +169,18 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
 .result-node > strong { color: var(--text); font-size: 38px; letter-spacing: -.055em; }
 .result-node p { margin: 3px 0 17px; color: #8998b4; font-size: 9px; line-height: 1.5; }
 .result-node > small { padding-top: 13px; border-top: 1px solid rgba(105, 138, 208, .13); color: #5fdcb2; font-size: 9px; }
+.annotation-tier { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; grid-template-rows: 44px auto; margin-top: 10px; }
+.annotation-branch { grid-column: 1; grid-row: 1; position: relative; }
+.annotation-branch::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 7px; border-left: 1px solid rgba(125, 150, 214, .42); }
+.annotation-branch i { position: absolute; left: calc(50% - 4.5px); bottom: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid var(--cyan); filter: drop-shadow(0 0 6px rgba(0,220,255,.45)); }
+.annotation-node { grid-column: 1; grid-row: 2; }
+.annotation-node::before { background: linear-gradient(var(--cyan), #69dfb7); }
+.annotation-link { grid-column: 2 / -1; grid-row: 2; position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; color: #71809a; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center; }
+.annotation-link::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed rgba(105, 138, 208, .25); }
+.annotation-link span, .annotation-link b, .annotation-link small { position: relative; background: var(--bg); }
+.annotation-link span { padding: 0 6px 0 0; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.annotation-link b { padding: 0 2px; color: var(--cyan); font-size: 20px; font-weight: 400; text-shadow: 0 0 14px rgba(0,220,255,.3); }
+.annotation-link small { padding: 0 0 0 6px; font-size: 8px; white-space: nowrap; }
 
 .workflow-story { padding-block: 130px 120px; }
 .section-heading { max-width: 760px; margin-bottom: 68px; }
@@ -419,6 +431,7 @@ h1 em { font-style: normal; color: transparent; background: linear-gradient(100d
   .contract-map { grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr); }
   .contract-map .run-link { display: none; }
   .result-node { grid-column: 1 / -1; min-height: 190px; margin-top: 18px; }
+  .annotation-link { display: none; }
   .branch-label { white-space: normal; max-width: calc(50% - 18px); }
   .pattern-card { grid-template-columns: 42px minmax(220px, .85fr) minmax(300px, 1.15fr); gap: 24px; }
   .docs-shell { grid-template-columns: 190px minmax(0, 1fr); gap: 38px; }
