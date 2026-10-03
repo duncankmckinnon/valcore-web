@@ -241,18 +241,25 @@ export default function Home() {
           </article>
 
           <div className="annotation-tier">
-            <div className="annotation-branch" aria-hidden="true"><i /></div>
-            <article className="contract-node annotation-node">
-              <span className="node-kicker">Ground truth</span>
-              <h3>Annotations</h3>
-              <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
-              <div className="schema-line"><code>rationale</code><small>string · reviewer note</small></div>
-            </article>
-            <div className="annotation-link" aria-hidden="true">
-              <span>scored against</span>
-              <b>→</b>
-              <small>ground truth for the run</small>
+            <div className="annotation-branch ann-left" aria-hidden="true">
+              <div className="branch-label"><span>annotates each row</span><small>label + rationale</small></div>
             </div>
+            <div className="annotation-branch ann-stem" aria-hidden="true"><i /></div>
+            <div className="annotation-branch ann-span" aria-hidden="true" />
+            <div className="annotation-branch ann-right" aria-hidden="true">
+              <i />
+              <div className="branch-label"><span>ground truth</span><small>outputs scored against it</small></div>
+            </div>
+            <article className="contract-node agent-node annotation-node">
+              <div>
+                <span className="node-kicker">Ground truth</span>
+                <h3>Annotations</h3>
+              </div>
+              <div>
+                <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
+                <div className="schema-line"><code>rationale</code><small>string · reviewer note</small></div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
