@@ -186,7 +186,7 @@ export default function Home() {
           </p>
         </header>
 
-        <div className="contract-map" aria-label="An Agent runs on Datasets and generates Agent Evaluators. Datasets and Agent Evaluators share a contract and feed versioned Experiment Runs">
+        <div className="contract-map" aria-label="An Agent runs on Datasets and generates Agent Evaluators. Datasets and Agent Evaluators share a contract and feed versioned Experiment Runs, which are scored against Annotations attached to the Dataset">
           <div className="agent-tier">
             <article className="contract-node agent-node">
               <div>
@@ -213,7 +213,6 @@ export default function Home() {
             <span className="node-kicker">Evidence</span>
             <h3>Dataset</h3>
             <div className="schema-line"><code>question</code><small>string</small></div>
-            <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
             <div className="schema-line derived-line"><code>response</code><small>Agent v2 · run 0</small></div>
           </article>
 
@@ -240,6 +239,28 @@ export default function Home() {
             <p>label agreement · κ · F1 · a score for every Agent response</p>
             <small>traced and synced to Logfire</small>
           </article>
+
+          <div className="annotation-tier">
+            <div className="annotation-branch ann-left" aria-hidden="true">
+              <div className="branch-label"><span>annotates each row</span><small>label + rationale</small></div>
+            </div>
+            <div className="annotation-branch ann-stem" aria-hidden="true"><i /></div>
+            <div className="annotation-branch ann-span" aria-hidden="true" />
+            <div className="annotation-branch ann-right" aria-hidden="true">
+              <i />
+              <div className="branch-label"><span>ground truth</span><small>outputs scored against it</small></div>
+            </div>
+            <article className="contract-node agent-node annotation-node">
+              <div>
+                <span className="node-kicker">Ground truth</span>
+                <h3>Annotations</h3>
+              </div>
+              <div>
+                <div className="schema-line accent-line"><code>label</code><small>pass · fail · review</small></div>
+                <div className="schema-line"><code>rationale</code><small>string · reviewer note</small></div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
