@@ -118,6 +118,7 @@ export const docs = [
       { id: "runs-panel", title: "Experiment Runs panel" },
       { id: "starting", title: "Starting an Experiment Run" },
       { id: "agent-runs", title: "Agent runs and responses" },
+      { id: "pipeline", title: "Agent then evaluators" },
       { id: "logfire-sync", title: "Logfire Experiment Runs" },
       { id: "validation", title: "Validation Experiment Runs", children: ["Interpreting results", "Thresholds API"] },
       { id: "evaluation", title: "Unlabeled Experiment Runs" },
@@ -131,6 +132,7 @@ export const docs = [
     sections: [
       { id: "mental-model", title: "App and CLI" },
       { id: "commands", title: "Command reference" },
+      { id: "pipeline", title: "Agent-to-evaluator workflows" },
       { id: "upgrading", title: "Upgrading from the old run commands" },
       { id: "packages", title: "Portable eval packages" },
       { id: "ci", title: "Using Valcore in CI" },
