@@ -106,6 +106,7 @@ export const docs = [
     sections: [
       { id: "evaluator-panel", title: "Agent Evaluator panel" },
       { id: "creating", title: "Creating Agent Evaluators", children: ["Manual creation", "Generating from a Dataset", "Generating from an Agent"] },
+      { id: "invocations", title: "Invocation context" },
       { id: "versioning", title: "Versioning Agent Evaluators" },
       { id: "capabilities", title: "Pydantic AI harness capabilities" },
     ],
@@ -132,6 +133,7 @@ export const docs = [
     sections: [
       { id: "mental-model", title: "App and CLI" },
       { id: "commands", title: "Command reference" },
+      { id: "invocation-bindings", title: "Invocation bindings" },
       { id: "pipeline", title: "Agent-to-evaluator workflows" },
       { id: "upgrading", title: "Upgrading from the old run commands" },
       { id: "packages", title: "Portable eval packages" },
